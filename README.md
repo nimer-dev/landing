@@ -1,46 +1,36 @@
-# nimer.dev — Landing Page
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-The marketing site at [nimer.dev](https://nimer.dev). Hero, problem, solution, pricing, FAQ, waitlist signup.
+## Getting Started
 
-> 📦 Part of the [Nimer Optimizer](https://github.com/nimer-dev) product.
-
-## Sections
-
-| Section        | Purpose                                                  |
-|----------------|----------------------------------------------------------|
-| Hero           | One-line value prop + email capture for early access     |
-| Problem        | Concrete numbers: Sonnet costs 12× Haiku, etc.           |
-| Solution       | Three-card explainer: routing, analytics, alerts         |
-| Code preview   | Live syntax-highlighted snippet of actual SDK usage      |
-| Pricing        | Free / Pro ($29) / Scale ($99) tiers                     |
-| FAQ            | Common questions: privacy, accuracy, comparison          |
-| Footer         | Twitter, GitHub, contact email                           |
-
-## Tech stack
-
-| Layer        | Choice                          |
-|--------------|---------------------------------|
-| Framework    | Next.js 14 (Static export)      |
-| Styling      | Tailwind CSS                    |
-| Email capture | Resend (or Supabase table)     |
-| Analytics    | Plausible                       |
-| Hosting      | Vercel                          |
-| Domain       | nimer.dev                       |
-
-## Status
-
-🚧 **In progress**
-
-- [x] Domain registered (Namecheap)
-- [ ] Initial deploy with email capture (week 1)
-- [ ] Polished design pass (week 6)
-
-## Local development
+First, run the development server:
 
 ```bash
-# Coming in week 1.
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## License
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-MIT.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0e1a;
+  --bg-soft: #0f1422;
+  --fg: #e6e8ef;
+  --fg-muted: #8a92a6;
+  --accent: #5b8cff;
+  --accent-soft: #1e2942;
+  --border: rgba(255, 255, 255, 0.08);
+  --grid: rgba(91, 140, 255, 0.04);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.font-serif-display {
+  font-family: var(--font-instrument-serif), serif;
+}
+
+.font-mono-display {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fade-up 0.7s ease-out forwards;
+}
