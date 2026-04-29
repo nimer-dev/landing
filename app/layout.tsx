@@ -14,14 +14,45 @@ const geistMono = Geist_Mono({
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
-  weight: "400",
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "Nimer — Cut your Claude API costs by ~60%",
+  metadataBase: new URL("https://nimer.dev"),
+  title: "Nimer Optimizer — Cut Claude API costs ~60%",
   description:
-    "Drop-in Python SDK that routes between Haiku, Sonnet, and Opus automatically. Same API. Smarter spending.",
+    "Drop-in Python SDK that routes Claude requests to Haiku, Sonnet, or Opus based on task type. Save ~60% without changing your code.",
+  keywords: [
+    "Claude API",
+    "Anthropic",
+    "AI cost optimization",
+    "LLM routing",
+    "Python SDK",
+  ],
+  authors: [{ name: "Nimer", url: "https://nimer.dev" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://nimer.dev",
+    siteName: "Nimer",
+    title: "Nimer Optimizer — Cut Claude API costs ~60%",
+    description:
+      "Drop-in Python SDK that routes Claude requests to Haiku, Sonnet, or Opus based on task type. Save ~60% without changing your code.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@trynimer",
+    creator: "@trynimer",
+    title: "Nimer Optimizer — Cut Claude API costs ~60%",
+    description:
+      "Drop-in Python SDK that routes Claude requests to Haiku, Sonnet, or Opus based on task type. Save ~60% without changing your code.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -30,11 +61,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full`}
-    >
-      <body className="min-h-full antialiased font-sans">{children}</body>
+    <html lang="en">
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
