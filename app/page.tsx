@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import CostCalculator from './components/CostCalculator';
+import FAQ from './components/FAQ';
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjlyawe"; // ← ضع رابط Formspree هنا
 
@@ -220,6 +221,9 @@ resp = client.messages.create(
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <FAQ />
 
       {/* FOOTER */}
       <footer className="border-t border-[color:var(--border)] py-12">
