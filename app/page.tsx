@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import CostCalculator from './components/CostCalculator';
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjlyawe"; // ← ضع رابط Formspree هنا
 
@@ -114,6 +115,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+  {/* CALCULATOR */}
+      <CostCalculator />
 
       {/* HOW */}
       <section className="border-t border-[color:var(--border)] py-24">
