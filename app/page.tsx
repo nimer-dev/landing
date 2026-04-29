@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import CostCalculator from './components/CostCalculator';
 import FAQ from './components/FAQ';
+import TrustStrip from './components/TrustStrip';
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjlyawe"; // ← ضع رابط Formspree هنا
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjlyawe";
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -80,6 +81,9 @@ export default function Home() {
         <div className="absolute top-1/2 -right-32 w-96 h-96 bg-[color:var(--accent)] opacity-[0.08] blur-3xl rounded-full pointer-events-none" />
       </section>
 
+      {/* TRUST */}
+      <TrustStrip />
+
       {/* PROBLEM */}
       <section className="border-t border-[color:var(--border)] py-24">
         <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
@@ -117,7 +121,7 @@ export default function Home() {
         </div>
       </section>
 
-  {/* CALCULATOR */}
+      {/* CALCULATOR */}
       <CostCalculator />
 
       {/* HOW */}
@@ -200,22 +204,88 @@ resp = client.messages.create(
           <h2 className="font-serif-display text-4xl md:text-5xl mt-4 mb-12 leading-tight">
             Pay <em className="text-[color:var(--accent)]">a fraction</em> of what you save.
           </h2>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-4 md:items-stretch">
             {[
-              { name: 'Free', price: '$0', desc: 'SDK + community routing rules', cta: 'forever', hl: false },
-              { name: 'Pro', price: '$29', desc: 'Dashboard, analytics, custom rules', cta: '/ month', hl: true },
-              { name: 'Scale', price: '$99', desc: 'Team seats, audit log, priority', cta: '/ month', hl: false },
+              {
+                name: 'Free',
+                price: '$0',
+                cta: 'forever',
+                desc: 'For solo devs trying it out',
+                features: ['SDK access', 'Community routing rules', 'Basic local logging'],
+                button: 'Start free',
+                hl: false,
+              },
+              {
+                name: 'Pro',
+                price: '$29',
+                cta: '/ month',
+                desc: 'For builders shipping products',
+                features: ['Everything in Free', 'Web dashboard + analytics', 'Custom routing rules', 'Email support'],
+                button: 'Join waitlist',
+                hl: true,
+              },
+              {
+                name: 'Scale',
+                price: '$99',
+                cta: '/ month',
+                desc: 'For teams running production',
+                features: ['Everything in Pro', 'Team seats (5+)', 'Audit log + SSO', 'Priority support'],
+                button: 'Contact us',
+                hl: false,
+              },
             ].map((t) => (
-              <div key={t.name} className={`p-6 rounded-lg border ${t.hl ? 'border-[color:var(--accent)] bg-[color:var(--accent-soft)]' : 'border-[color:var(--border)] bg-[color:var(--bg-soft)]'}`}>
-                <div className="flex justify-between items-baseline mb-1">
+              <div
+                key={t.name}
+                className={`relative p-7 rounded-lg flex flex-col ${
+                  t.hl
+                    ? 'border-2 border-[color:var(--accent)] bg-[color:var(--accent-soft)] md:-mt-3 md:mb-3'
+                    : 'border border-[color:var(--border)] bg-[color:var(--bg-soft)] hover:border-[color:var(--fg-muted)]'
+                } transition-colors`}
+              >
+                {t.hl && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[color:var(--accent)] text-[#0a0e1a] text-[10px] font-mono-display uppercase tracking-[0.18em] px-3 py-1 rounded-full">
+                    Most popular
+                  </div>
+                )}
+
+                <div className="mb-2">
                   <span className="font-serif-display text-2xl">{t.name}</span>
-                  {t.hl && <span className="text-xs font-mono-display text-[color:var(--accent)]">popular</span>}
                 </div>
-                <div className="flex items-baseline gap-2 mb-3">
-                  <span className="font-serif-display text-4xl">{t.price}</span>
+                <p className="text-xs text-[color:var(--fg-muted)] mb-4 leading-relaxed">{t.desc}</p>
+
+                <div className="flex items-baseline gap-2 mb-6">
+                  <span className="font-serif-display text-5xl">{t.price}</span>
                   <span className="text-sm text-[color:var(--fg-muted)] font-mono-display">{t.cta}</span>
                 </div>
-                <p className="text-sm text-[color:var(--fg-muted)] leading-relaxed">{t.desc}</p>
+
+                <ul className="space-y-2.5 mb-8 flex-1">
+                  {t.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-[color:var(--fg)]">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-4 h-4 mt-0.5 flex-shrink-0 text-[color:var(--accent)]"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <span className="leading-snug">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  className={`w-full py-2.5 rounded-md text-sm font-mono-display transition-colors ${
+                    t.hl
+                      ? 'bg-[color:var(--accent)] text-[#0a0e1a] hover:opacity-90'
+                      : 'border border-[color:var(--border)] text-[color:var(--fg)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]'
+                  }`}
+                >
+                  {t.button}
+                </button>
               </div>
             ))}
           </div>
