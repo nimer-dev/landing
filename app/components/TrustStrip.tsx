@@ -68,7 +68,7 @@ export default function TrustStrip() {
                 {item.icon}
               </div>
               <div>
-                <div className="font-mono-display text-sm text-[color:var(--fg)] mb-1">
+                <div className="font-mono text-sm text-[color:var(--fg)] mb-1">
                   {item.title}
                 </div>
                 <div className="text-xs text-[color:var(--fg-muted)] leading-relaxed">
