@@ -169,7 +169,7 @@ export default function Home() {
           </div>
 
           <p className="fade-up" style={{ fontSize: 12, color: 'var(--fg-muted)', animationDelay: '220ms' }}>
-            Free forever · No credit card · 1 line change
+            SDK free forever · 14-day dashboard trial · No credit card
           </p>
         </div>
 
@@ -555,7 +555,7 @@ export default function Home() {
         <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center', position: 'relative' }}>
           <div className="badge" style={{ marginBottom: 24, display: 'inline-flex' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399', display: 'inline-block', animation: 'pulse-dot 2s ease-in-out infinite' }} />
-            Free forever · No credit card
+            SDK free forever · 14-day dashboard trial
           </div>
 
           <h2 style={{ fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: 18 }}>

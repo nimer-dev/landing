@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "When do I actually pay?",
-    a: "The SDK is free forever. You only pay for Pro ($29/mo) or Scale ($99/mo) when you want the dashboard, custom routing rules, or team features. The savings on your Anthropic bill come immediately.",
+    a: "The SDK is open-source and free forever — install it and start saving immediately, no account needed. The dashboard comes with a 14-day free trial. After that, you can upgrade to Pro ($29/mo) for analytics, custom routing rules, and budget alerts. We'll remind you at 7 days, 3 days, and 1 day before the trial ends.",
   },
 ];
 
