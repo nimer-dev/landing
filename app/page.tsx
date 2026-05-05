@@ -674,7 +674,7 @@ export default function Home() {
           </div>
 
           <div className="font-mono" style={{ fontSize: 11, color: 'var(--fg-muted)' }}>
-            © 2026 Nimer · MIT License
+            © 2026 Nimer · MIT License · <a href="/terms" style={{ color: 'var(--fg-2)', textDecoration: 'none' }}>Terms</a>
           </div>
         </div>
       </footer>
