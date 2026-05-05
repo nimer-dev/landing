@@ -448,6 +448,23 @@ export default function Home() {
             <p style={{ fontSize: 15, color: 'var(--fg-2)' }}>
               The SDK is free forever. Pay only for the dashboard and advanced features.
             </p>
+
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              marginTop: 20,
+              padding: '10px 18px',
+              borderRadius: 999,
+              background: 'rgba(99,102,241,0.08)',
+              border: '1px solid rgba(99,102,241,0.25)',
+            }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#34d399', flexShrink: 0, animation: 'pulse-dot 2s ease-in-out infinite' }} />
+              <span style={{ fontSize: 13, color: 'var(--fg-2)' }}>
+                Paid plans activating soon —{' '}
+                <span style={{ color: '#a5b4fc', fontWeight: 500 }}>start your free trial now</span>
+              </span>
+            </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, alignItems: 'start' }}>
