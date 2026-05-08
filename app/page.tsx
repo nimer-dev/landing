@@ -30,6 +30,15 @@ const FEATURES = [
   {
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    ),
+    title: "Trust Gateway",
+    desc: "Every model response is scanned for toxicity, bias, PII, and safety violations before it reaches your users.",
+  },
+  {
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
       </svg>
     ),
@@ -39,11 +48,11 @@ const FEATURES = [
   {
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
       </svg>
     ),
-    title: "Privacy First",
-    desc: "The SDK runs in your process. We log token counts, model used, and timestamp only — never prompts or completions.",
+    title: "Custom Policy Engine",
+    desc: "Write regex-based block, redact, or warn policies. Apply them to inputs and outputs — all enforced before your users see a word.",
   },
   {
     icon: (
@@ -51,8 +60,17 @@ const FEATURES = [
         <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
       </svg>
     ),
-    title: "Real-time Analytics",
-    desc: "Dashboard tracks every routed call — savings, model distribution, token spend, and budget utilization over time.",
+    title: "Trust Analytics",
+    desc: "Dashboard tracks safety score, blocked requests, PII detections, and policy impact over time — not just cost.",
+  },
+  {
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    ),
+    title: "Privacy First",
+    desc: "PII is auto-redacted before it reaches the model. We log token counts and timestamps only — never prompts or completions.",
   },
   {
     icon: (
@@ -61,7 +79,16 @@ const FEATURES = [
       </svg>
     ),
     title: "3ms Overhead",
-    desc: "Routing is fully synchronous and deterministic. No network calls, no models, no perceptible latency to your users.",
+    desc: "Routing and gateway checks are fully synchronous and deterministic. No external calls, no perceptible latency.",
+  },
+  {
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+      </svg>
+    ),
+    title: "Smart Alerts",
+    desc: "Get notified when safety scores drop, budgets are crossed, or a policy blocks a request. Fully configurable thresholds.",
   },
   {
     icon: (
@@ -78,7 +105,7 @@ export default function Home() {
   const [email, setEmail]   = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
@@ -106,7 +133,7 @@ export default function Home() {
           {/* Badge */}
           <div className="badge fade-up" style={{ marginBottom: 28, display: 'inline-flex' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399', display: 'inline-block', animation: 'pulse-dot 2s ease-in-out infinite' }} />
-            Open beta · MIT licensed · Python 3.11+
+            AI Quality &amp; Trust Gateway · MIT licensed · Python 3.11+
           </div>
 
           {/* Headline */}
@@ -122,8 +149,8 @@ export default function Home() {
               color: 'var(--fg)',
             }}
           >
-            Stop overpaying<br />
-            <span className="gradient-text">for Claude API calls.</span>
+            Cheaper, safer<br />
+            <span className="gradient-text">Claude API calls.</span>
           </h1>
 
           {/* Sub */}
@@ -133,14 +160,14 @@ export default function Home() {
               fontSize: 18,
               color: 'var(--fg-2)',
               lineHeight: 1.72,
-              maxWidth: 560,
+              maxWidth: 580,
               margin: '0 auto 36px',
               animationDelay: '120ms',
             }}
           >
-            Drop-in Python SDK that routes requests to Haiku, Sonnet, or Opus
-            based on task complexity. Same code.{' '}
-            <span style={{ color: 'var(--fg)', fontWeight: 500 }}>~60% less on your bill.</span>
+            Drop-in Python SDK that routes requests to the right model{' '}
+            <span style={{ color: 'var(--fg)', fontWeight: 500 }}>and</span>{' '}
+            runs every response through a safety, bias, and PII gateway — in one import change.
           </p>
 
           {/* CTAs */}
@@ -191,10 +218,10 @@ export default function Home() {
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0,
         }}>
           {[
-            { val: '~60%',  label: 'average savings',    accent: true },
-            { val: '$0',    label: 'free tier forever',   accent: false },
-            { val: '14',    label: 'tests passing',       accent: false },
-            { val: '<3ms',  label: 'routing overhead',    accent: false },
+            { val: '~60%',   label: 'average cost saved',   accent: true },
+            { val: '100',    label: 'safety score target',  accent: false },
+            { val: '$0',     label: 'free tier forever',    accent: false },
+            { val: '<3ms',   label: 'gateway overhead',     accent: false },
           ].map((s, i) => (
             <div key={s.label} style={{
               textAlign: 'center', padding: '0 16px',
@@ -484,7 +511,7 @@ export default function Home() {
                 price: '$29',
                 sub: '/ month',
                 desc: 'For builders shipping products with Claude.',
-                features: ['Everything in Free', 'Web dashboard + analytics', 'Custom routing rules', 'Budget alerts at 50/75/90%', 'Email support'],
+                features: ['Everything in Free', 'Trust gateway + safety scores', 'Custom policy engine (block/redact)', 'Budget + safety alerts', 'Email support'],
                 hl: true,
                 cta: 'Join waitlist',
                 onClick: () => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' }),
@@ -494,7 +521,7 @@ export default function Home() {
                 price: '$99',
                 sub: '/ month',
                 desc: 'For teams running Claude in production.',
-                features: ['Everything in Pro', 'Team seats (5+)', 'Audit log + SSO', 'Priority support', 'SLA guarantee'],
+                features: ['Everything in Pro', 'Team seats (5+)', 'Full audit log + SSO', 'Red-team reports', 'SLA + priority support'],
                 hl: false,
                 cta: 'Contact us',
                 onClick: () => { window.location.href = 'mailto:nimershahm@gmail.com'; },
