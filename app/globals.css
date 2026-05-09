@@ -22,6 +22,12 @@
   --accent-soft: rgba(99, 102, 241, 0.09);
   --accent-glow: rgba(99, 102, 241, 0.22);
 
+  /* ── MENA-warm accents (used sparingly: badges, premium accents, halal mode) ── */
+  --accent-gold:    #C9A961;
+  --accent-gold-2:  #8E7A48;
+  --halal:          #0F7857;
+  --halal-2:        #5fd2a8;
+
   /* ── Borders ──────────────────────────────────────────── */
   --border:      rgba(255, 255, 255, 0.07);
   --border-2:    rgba(255, 255, 255, 0.12);
@@ -61,6 +67,23 @@ body::before {
 
 /* ─── Typography helpers ──────────────────────────────────── */
 .font-mono { font-family: var(--font-geist-mono), ui-monospace, monospace; }
+
+/* When in Arabic, prefer IBM Plex Sans Arabic for body & headings;
+   keep mono untouched (code stays LTR) */
+html[lang="ar"] body {
+  font-family: var(--font-plex-arabic), var(--font-geist-sans), system-ui, sans-serif;
+}
+html[lang="ar"] {
+  /* Slightly looser line-height for Arabic readability */
+  line-height: 1.7;
+}
+html[dir="rtl"] .font-mono { /* keep mono LTR even when page is RTL */ direction: ltr; }
+
+/* ─── Logical-property helpers (RTL-safe) ─────────────────── */
+.flip-on-rtl {
+  /* Use to mirror unidirectional icons (arrows, chevrons) when in RTL */
+}
+html[dir="rtl"] .flip-on-rtl { transform: scaleX(-1); }
 
 /* ─── Gradient text ───────────────────────────────────────── */
 .gradient-text {
