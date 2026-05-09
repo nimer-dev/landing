@@ -5,6 +5,9 @@ import Navbar from './components/Navbar';
 import RoutingDemo from './components/RoutingDemo';
 import CostCalculator from './components/CostCalculator';
 import FAQ from './components/FAQ';
+import ProviderStrip from './components/ProviderStrip';
+import HalalSection from './components/HalalSection';
+import { useLocale } from './lib/LocaleContext';
 
 const FORMSPREE = "https://formspree.io/f/mnjlyawe";
 
@@ -102,6 +105,7 @@ const FEATURES = [
 ];
 
 export default function Home() {
+  const { t, dir, locale } = useLocale();
   const [email, setEmail]   = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -121,7 +125,7 @@ export default function Home() {
   };
 
   return (
-    <main style={{ minHeight: '100vh', color: 'var(--fg)' }}>
+    <main style={{ minHeight: '100vh', color: 'var(--fg)', direction: dir }}>
       <Navbar />
 
       {/* ════════════════════════════════════════════════════
@@ -133,7 +137,7 @@ export default function Home() {
           {/* Badge */}
           <div className="badge fade-up" style={{ marginBottom: 28, display: 'inline-flex' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399', display: 'inline-block', animation: 'pulse-dot 2s ease-in-out infinite' }} />
-            AI Quality &amp; Trust Gateway · MIT licensed · Python 3.11+
+            {t.hero.badge}
           </div>
 
           {/* Headline */}
@@ -143,14 +147,14 @@ export default function Home() {
               fontSize: 'clamp(42px, 7vw, 76px)',
               fontWeight: 700,
               lineHeight: 1.06,
-              letterSpacing: '-0.03em',
+              letterSpacing: locale === 'ar' ? '-0.01em' : '-0.03em',
               marginBottom: 22,
               animationDelay: '60ms',
               color: 'var(--fg)',
             }}
           >
-            Cheaper, safer<br />
-            <span className="gradient-text">Claude API calls.</span>
+            {t.hero.title1}<br />
+            <span className="gradient-text">{t.hero.title2}</span>
           </h1>
 
           {/* Sub */}
@@ -165,9 +169,7 @@ export default function Home() {
               animationDelay: '120ms',
             }}
           >
-            Drop-in Python SDK that routes requests to the right model{' '}
-            <span style={{ color: 'var(--fg)', fontWeight: 500 }}>and</span>{' '}
-            runs every response through a safety, bias, and PII gateway — in one import change.
+            {t.hero.subtitle}
           </p>
 
           {/* CTAs */}
@@ -180,7 +182,8 @@ export default function Home() {
               className="btn-primary"
               style={{ padding: '12px 24px', fontSize: 14, borderRadius: 8, fontFamily: 'inherit' }}
             >
-              Get early access →
+              {t.hero.cta1}
+              <span className="flip-on-rtl" style={{ marginInlineStart: 4 }}>→</span>
             </button>
             <a
               href="https://github.com/nimer-dev/optimizer-sdk"
@@ -191,23 +194,31 @@ export default function Home() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
                 <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
               </svg>
-              View on GitHub
+              {t.hero.cta2}
             </a>
           </div>
 
           <p className="fade-up" style={{ fontSize: 12, color: 'var(--fg-muted)', animationDelay: '220ms' }}>
-            SDK free forever · 14-day dashboard trial · No credit card
+            {t.hero.footnote}
           </p>
         </div>
 
         {/* Routing Demo — hero visual */}
         <div
           className="fade-up"
-          style={{ maxWidth: 500, margin: '56px auto 0', animationDelay: '260ms' }}
+          style={{ maxWidth: 500, margin: '56px auto 0', animationDelay: '260ms', direction: 'ltr' }}
         >
           <RoutingDemo />
         </div>
       </section>
+
+      {/* ════════════════════════════════════════════════════
+          PROVIDER STRIP — instant credibility
+      ════════════════════════════════════════════════════ */}
+      <ProviderStrip />
+
+      {/* English-only deep-dive sections (stats, features, problem, how it works, code, calculator) */}
+      <div style={{ direction: 'ltr', textAlign: 'left' }}>
 
       {/* ════════════════════════════════════════════════════
           STATS STRIP
@@ -460,6 +471,17 @@ export default function Home() {
       ════════════════════════════════════════════════════ */}
       <CostCalculator />
 
+      {/* close English-only deep-dive wrapper */}
+      </div>
+
+      {/* ════════════════════════════════════════════════════
+          HALAL AI MODE — coming soon (MENA differentiator)
+      ════════════════════════════════════════════════════ */}
+      <HalalSection />
+
+      {/* English-only pricing + FAQ */}
+      <div style={{ direction: 'ltr', textAlign: 'left' }}>
+
       {/* ════════════════════════════════════════════════════
           PRICING
       ════════════════════════════════════════════════════ */}
@@ -583,6 +605,9 @@ export default function Home() {
       ════════════════════════════════════════════════════ */}
       <div id="faq"><FAQ /></div>
 
+      {/* close English-only pricing+FAQ wrapper */}
+      </div>
+
       {/* ════════════════════════════════════════════════════
           FINAL CTA — waitlist
       ════════════════════════════════════════════════════ */}
@@ -599,16 +624,15 @@ export default function Home() {
         <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center', position: 'relative' }}>
           <div className="badge" style={{ marginBottom: 24, display: 'inline-flex' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399', display: 'inline-block', animation: 'pulse-dot 2s ease-in-out infinite' }} />
-            SDK free forever · 14-day dashboard trial
+            {t.ctaFinal.badgeText}
           </div>
 
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.025em', marginBottom: 18 }}>
-            Start saving on{' '}
-            <span className="gradient-text">your next deploy.</span>
+          <h2 style={{ fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: locale === 'ar' ? '-0.01em' : '-0.025em', marginBottom: 18 }}>
+            {t.ctaFinal.title1}{' '}
+            <span className="gradient-text">{t.ctaFinal.title2}</span>
           </h2>
           <p style={{ color: 'var(--fg-2)', fontSize: 16, lineHeight: 1.7, marginBottom: 40 }}>
-            One import change. No infrastructure. No API keys to manage.
-            Your Claude calls get cheaper immediately.
+            {t.ctaFinal.subtitle}
           </p>
 
           <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -616,8 +640,9 @@ export default function Home() {
               type="email" required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@company.com"
+              placeholder={t.ctaFinal.placeholder}
               disabled={status === 'loading' || status === 'success'}
+              dir={dir === 'rtl' ? 'ltr' : undefined}
               style={{
                 flex: 1, minWidth: 240, maxWidth: 320,
                 padding: '13px 18px',
@@ -636,12 +661,12 @@ export default function Home() {
               className="btn-primary"
               style={{ padding: '13px 24px', borderRadius: 9, fontSize: 15, fontFamily: 'inherit' }}
             >
-              {status === 'success' ? '✓ You\'re on the list' : status === 'loading' ? '…' : 'Get early access'}
+              {status === 'success' ? t.ctaFinal.success : status === 'loading' ? '…' : t.ctaFinal.submit}
             </button>
           </form>
 
           {status === 'error' && (
-            <p style={{ marginTop: 12, fontSize: 13, color: '#f87171' }}>Something went wrong — please try again.</p>
+            <p style={{ marginTop: 12, fontSize: 13, color: '#f87171' }}>{t.ctaFinal.error}</p>
           )}
         </div>
       </section>
@@ -659,24 +684,24 @@ export default function Home() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
               <div style={{
                 width: 22, height: 22, borderRadius: 6,
-                background: 'linear-gradient(135deg, #6366f1, #a78bfa)',
+                background: 'linear-gradient(135deg, #6366f1, #a78bfa, #C9A961)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 11, fontWeight: 700, color: '#fff',
               }}>N</div>
               <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--fg)' }}>Nimer</span>
             </div>
             <div className="font-mono" style={{ fontSize: 11, color: 'var(--fg-muted)' }}>
-              Built in Dammam, Saudi Arabia · Made for the world
+              {t.footer.built}
             </div>
           </div>
 
           {/* Links */}
           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
             {[
-              { label: 'GitHub',   href: 'https://github.com/nimer-dev' },
-              { label: 'Twitter',  href: 'https://twitter.com/trynimer' },
-              { label: 'Docs',     href: 'https://github.com/nimer-dev/optimizer-sdk' },
-              { label: 'Contact',  href: 'mailto:nimershahm@gmail.com' },
+              { label: t.footer.github,   href: 'https://github.com/nimer-dev' },
+              { label: t.footer.twitter,  href: 'https://twitter.com/trynimer' },
+              { label: t.footer.docs,     href: 'https://github.com/nimer-dev/optimizer-sdk' },
+              { label: t.footer.contact,  href: 'mailto:nimershahm@gmail.com' },
             ].map((l) => (
               <a
                 key={l.label}
@@ -701,7 +726,7 @@ export default function Home() {
           </div>
 
           <div className="font-mono" style={{ fontSize: 11, color: 'var(--fg-muted)' }}>
-            © 2026 Nimer · MIT License · <a href="/terms" style={{ color: 'var(--fg-2)', textDecoration: 'none' }}>Terms</a>
+            © 2026 Nimer · MIT License · <a href="/terms" style={{ color: 'var(--fg-2)', textDecoration: 'none' }}>{t.footer.terms}</a>
           </div>
         </div>
       </footer>

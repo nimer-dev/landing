@@ -1,44 +1,76 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
+import { LocaleProvider } from "./lib/LocaleContext";
+import { DEFAULT_LOCALE, LOCALE_COOKIE, isLocale, type Locale } from "./lib/i18n";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const plexArabic = IBM_Plex_Sans_Arabic({
+  variable: "--font-plex-arabic",
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nimer.dev"),
-  title: "Nimer — Cut Claude API costs by 60%",
+  title: "Nimer — The AI Gateway for the Middle East",
   description:
-    "Drop-in Python SDK that intelligently routes Claude requests to Haiku, Sonnet, or Opus. Save ~60% without touching your code.",
-  keywords: ["Claude API", "Anthropic", "AI cost optimization", "LLM routing", "Python SDK", "Nimer"],
+    "Drop-in SDK that routes Claude, GPT, Gemini and 4 more providers — with a built-in safety, bias, and PII gateway. Halal AI Mode coming soon.",
+  keywords: [
+    "AI gateway",
+    "LLM routing",
+    "MENA AI",
+    "Halal AI",
+    "Claude API",
+    "OpenAI",
+    "Gemini",
+    "AI cost optimization",
+    "Python SDK",
+    "Nimer",
+  ],
   authors: [{ name: "Nimer", url: "https://nimer.dev" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://nimer.dev",
     siteName: "Nimer",
-    title: "Nimer — Cut Claude API costs by 60%",
-    description: "Drop-in Python SDK that routes Claude requests intelligently. Save ~60% without changing your code.",
+    title: "Nimer — The AI Gateway for the Middle East",
+    description:
+      "Drop-in SDK that routes Claude, GPT, Gemini and 4 more providers — with built-in safety, bias, and PII gateway. Halal AI Mode coming soon.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@trynimer",
     creator: "@trynimer",
-    title: "Nimer — Cut Claude API costs by 60%",
-    description: "Drop-in Python SDK that routes Claude requests intelligently. Save ~60% without changing your code.",
+    title: "Nimer — The AI Gateway for the Middle East",
+    description:
+      "Drop-in SDK that routes 7 AI providers — with built-in safety gateway. Halal AI Mode coming soon.",
   },
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get(LOCALE_COOKIE)?.value;
+  const locale: Locale = isLocale(cookieLocale) ? cookieLocale : DEFAULT_LOCALE;
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
   return (
-    <html lang="en">
+    <html lang={locale} dir={dir}>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable}`}
-        style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
+        className={`${geistSans.variable} ${geistMono.variable} ${plexArabic.variable}`}
+        style={{
+          fontFamily:
+            locale === "ar"
+              ? "var(--font-plex-arabic), var(--font-geist-sans), system-ui, sans-serif"
+              : "var(--font-geist-sans), system-ui, sans-serif",
+        }}
       >
-        {/* Hero radial glow — Linear signature */}
+        {/* Hero radial glow — Linear signature with warm-gold tint */}
         <div
           aria-hidden="true"
           style={{
@@ -48,19 +80,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             pointerEvents: "none",
           }}
         >
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "900px",
-            height: "600px",
-            background: "radial-gradient(ellipse 80% 60% at 50% -5%, rgba(99,102,241,0.28) 0%, rgba(168,139,250,0.08) 50%, transparent 70%)",
-            pointerEvents: "none",
-          }} />
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "900px",
+              height: "600px",
+              background:
+                "radial-gradient(ellipse 80% 60% at 50% -5%, rgba(99,102,241,0.28) 0%, rgba(201,169,97,0.08) 50%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
         </div>
 
-        <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
+        <LocaleProvider initialLocale={locale}>
+          <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
+        </LocaleProvider>
       </body>
     </html>
   );
