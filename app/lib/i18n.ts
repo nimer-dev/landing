@@ -63,6 +63,22 @@ export interface Dict {
     twitter: string;
     github: string;
   };
+  maintenance: {
+    badge: string;
+    title1: string;
+    title2: string;
+    subtitle: string;
+    roadmapHeader: string;
+    roadmap: readonly { title: string; desc: string }[];
+    emailHeader: string;
+    emailPlaceholder: string;
+    emailSubmit: string;
+    emailSuccess: string;
+    emailError: string;
+    existingUser: string;
+    existingUserCta: string;
+    eta: string;
+  };
 }
 
 export const dict: Record<Locale, Dict> = {
@@ -129,6 +145,44 @@ export const dict: Record<Locale, Dict> = {
       twitter: "Twitter",
       github: "GitHub",
     },
+    maintenance: {
+      badge: "Building something bigger",
+      title1: "Nimer is becoming",
+      title2: "the AI Gateway for the Middle East.",
+      subtitle:
+        "We're upgrading. Halal AI Mode, streaming, virtual API keys, function calling across 7 providers, and a redesigned dashboard — all shipping together.",
+      roadmapHeader: "What's coming",
+      roadmap: [
+        {
+          title: "Streaming responses",
+          desc: "OpenAI-compatible SSE for Claude, GPT, Gemini and 4 more providers — drop-in replacement.",
+        },
+        {
+          title: "Virtual API keys",
+          desc: "Generate scoped keys per project, app, or team — with budgets, model whitelists, and per-key analytics.",
+        },
+        {
+          title: "Function calling everywhere",
+          desc: "One unified tools API across all 7 providers — write once, route to any model.",
+        },
+        {
+          title: "Halal AI Mode",
+          desc: "First-of-its-kind Sharia-aware filtering for MENA finance, legal, edtech, and consumer apps.",
+        },
+        {
+          title: "Webhook delivery + HMAC",
+          desc: "Push usage, alerts, and policy events to your backend with signed webhooks and automatic retries.",
+        },
+      ],
+      emailHeader: "Get notified when we launch",
+      emailPlaceholder: "you@company.com",
+      emailSubmit: "Notify me",
+      emailSuccess: "✓ You're on the list",
+      emailError: "Something went wrong — please try again.",
+      existingUser: "Already a user?",
+      existingUserCta: "Go to dashboard →",
+      eta: "Expected launch · June 2026",
+    },
   },
   ar: {
     nav: {
@@ -192,6 +246,44 @@ export const dict: Record<Locale, Dict> = {
       contact: "تواصل",
       twitter: "Twitter",
       github: "GitHub",
+    },
+    maintenance: {
+      badge: "نبني شيئًا أكبر",
+      title1: "Nimer يصبح",
+      title2: "بوابة الذكاء الاصطناعي للشرق الأوسط.",
+      subtitle:
+        "نطوّر المنصّة. وضع حلال، Streaming، مفاتيح API افتراضية، استدعاء دوالّ عبر ٧ مزوّدين، ولوحة تحكّم بتصميم جديد — كل ذلك في إطلاق واحد.",
+      roadmapHeader: "ما القادم",
+      roadmap: [
+        {
+          title: "استجابات Streaming",
+          desc: "SSE متوافق مع OpenAI لـ Claude وGPT وGemini و٤ مزوّدين آخرين — بديل مباشر بدون تغيير كود.",
+        },
+        {
+          title: "مفاتيح API افتراضية",
+          desc: "أنشئ مفاتيح بصلاحيات منفصلة لكل مشروع أو فريق — مع ميزانيات وقوائم نماذج وتحليلات لكل مفتاح.",
+        },
+        {
+          title: "استدعاء الدوالّ في كل مكان",
+          desc: "واجهة tools موحّدة عبر ٧ مزوّدين — اكتب مرّة واحدة، شغّل على أي نموذج.",
+        },
+        {
+          title: "وضع الذكاء الاصطناعي الحلال",
+          desc: "فلترة شرعية مدمجة، الأولى من نوعها — للبنوك والقانون والتعليم والمستهلك في الشرق الأوسط.",
+        },
+        {
+          title: "Webhook موقّعة بـ HMAC",
+          desc: "إرسال الاستخدام والتنبيهات وأحداث السياسات إلى الـ backend مع توقيع وإعادة محاولة تلقائية.",
+        },
+      ],
+      emailHeader: "أبلغني عند الإطلاق",
+      emailPlaceholder: "you@company.com",
+      emailSubmit: "أبلغني",
+      emailSuccess: "✓ تم تسجيلك",
+      emailError: "حدث خطأ — حاول مرة أخرى.",
+      existingUser: "لديك حساب بالفعل؟",
+      existingUserCta: "ادخل لوحة التحكّم ←",
+      eta: "الإطلاق المتوقّع · يونيو ٢٠٢٦",
     },
   },
 };
