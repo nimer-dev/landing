@@ -44,7 +44,7 @@ export default function TermsPage() {
           },
           {
             title: "6. Payment and Billing",
-            body: `Paid plans are billed monthly. Payments are processed through Lemon Squeezy. By subscribing, you authorize us to charge your payment method on a recurring basis. Subscriptions auto-renew unless cancelled before the renewal date. The Scale plan is fulfilled manually via direct contact and is not processed through Lemon Squeezy.`,
+            body: `Paid plans are billed monthly. Payments are processed through our US company via Stripe (or another processor we disclose at checkout). By subscribing, you authorize us to charge your payment method on a recurring basis. Subscriptions auto-renew unless cancelled before the renewal date. The Scale plan may be fulfilled manually via direct contact when noted on the pricing page.`,
           },
           {
             title: "7. Free Trial",
