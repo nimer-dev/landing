@@ -96,7 +96,7 @@ export default function HubClient() {
       const res = await fetch(FORMSPREE, {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "maintenance-launch-list" }),
+        body: JSON.stringify({ email, source: "bynimer-hub-list" }),
       });
       if (res.ok) {
         setStatus("success");
