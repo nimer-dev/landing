@@ -505,30 +505,16 @@ export default function HubClient() {
             {t.footer.built}
           </div>
           <div style={{ display: "flex", gap: 4 }}>
-            <a
-              href="https://github.com/nimer-dev"
-              target="_blank"
-              rel="noopener noreferrer"
+            <span
               className="font-mono"
               style={{
                 padding: "6px 12px",
                 fontSize: 12,
                 color: "var(--fg-muted)",
-                textDecoration: "none",
-                borderRadius: 6,
-                transition: "color 0.15s, background 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "var(--fg)";
-                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "var(--fg-muted)";
-                e.currentTarget.style.background = "transparent";
               }}
             >
               {t.footer.github}
-            </a>
+            </span>
             <a
               href="mailto:nimershahm@gmail.com"
               className="font-mono"
