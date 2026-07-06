@@ -78,8 +78,6 @@ export interface Dict {
     emailSubmit: string;
     emailSuccess: string;
     emailError: string;
-    existingUser: string;
-    existingUserCta: string;
     eta: string;
   };
 }
@@ -156,7 +154,7 @@ export const dict: Record<Locale, Dict> = {
       title1: "Trustworthy AI,",
       title2: "engineered from first principles.",
       subtitle:
-        "ByNimer is an AI research and infrastructure company. We build intelligence that can be trusted — a grounded-memory reasoning core, and a regional AI gateway for the Middle East.",
+        "ByNimer is an AI research and infrastructure company. We build intelligence that can be trusted — a grounded-memory reasoning core, and a global AI gateway with built-in trust and safety.",
       roadmapHeader: "Our projects",
       roadmap: [
         {
@@ -167,7 +165,7 @@ export const dict: Record<Locale, Dict> = {
         {
           title: "Nimer Gateway",
           status: "In development",
-          desc: "One SDK across 7 providers and 22+ models, with virtual API keys and a Halal AI mode — the AI gateway for the Middle East.",
+          desc: "One SDK across 7 providers and 22+ models, with virtual API keys and a Halal AI mode — a trustworthy AI gateway for everyone.",
           soon: "Soon",
         },
         {
@@ -181,8 +179,6 @@ export const dict: Record<Locale, Dict> = {
       emailSubmit: "Notify me",
       emailSuccess: "✓ You're on the list",
       emailError: "Something went wrong — please try again.",
-      existingUser: "Already a Gateway user?",
-      existingUserCta: "Go to dashboard →",
       eta: "New projects launching soon",
     },
   },
@@ -257,7 +253,7 @@ export const dict: Record<Locale, Dict> = {
       title1: "ذكاءٌ موثوق،",
       title2: "مبنيٌّ من المبادئ الأولى.",
       subtitle:
-        "ByNimer شركة أبحاث وبنية تحتية للذكاء الاصطناعي. نبني ذكاءً يمكن الوثوق به — نواة تفكير بذاكرة مُرتَكِزة على الواقع، وبوابة ذكاء إقليمية للشرق الأوسط.",
+        "ByNimer شركة أبحاث وبنية تحتية للذكاء الاصطناعي. نبني ذكاءً يمكن الوثوق به — نواة تفكير بذاكرة مُرتَكِزة على الواقع، وبوابة ذكاء عالمية موثوقة.",
       roadmapHeader: "مشاريعنا",
       roadmap: [
         {
@@ -268,7 +264,7 @@ export const dict: Record<Locale, Dict> = {
         {
           title: "Nimer Gateway",
           status: "قيد التطوير",
-          desc: "مكتبة واحدة عبر ٧ مزوّدين و٢٢+ نموذجًا، مع مفاتيح API افتراضية ووضع حلال — بوابة الذكاء للشرق الأوسط.",
+          desc: "مكتبة واحدة عبر ٧ مزوّدين و٢٢+ نموذجًا، مع مفاتيح API افتراضية ووضع حلال — بوابة ذكاء موثوقة للجميع.",
           soon: "قريبًا",
         },
         {
@@ -282,8 +278,6 @@ export const dict: Record<Locale, Dict> = {
       emailSubmit: "أبلغني",
       emailSuccess: "✓ تم تسجيلك",
       emailError: "حدث خطأ — حاول مرة أخرى.",
-      existingUser: "مستخدم Gateway بالفعل؟",
-      existingUserCta: "ادخل لوحة التحكّم ←",
       eta: "مشاريع جديدة قريبًا",
     },
   },

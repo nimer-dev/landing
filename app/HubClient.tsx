@@ -476,27 +476,6 @@ export default function HubClient() {
           )}
         </section>
 
-        {/* Existing-user link */}
-        <p
-          style={{
-            marginTop: 32,
-            fontSize: 13,
-            color: "var(--fg-muted)",
-          }}
-        >
-          {t.maintenance.existingUser}{" "}
-          <a
-            href="https://dashboard.nimer.dev"
-            style={{
-              color: "var(--accent-2)",
-              textDecoration: "none",
-              fontWeight: 500,
-            }}
-          >
-            {t.maintenance.existingUserCta}
-          </a>
-        </p>
-
         {/* Footer mini */}
         <div
           style={{
