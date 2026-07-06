@@ -14,40 +14,45 @@ const plexArabic = IBM_Plex_Sans_Arabic({
   display: "swap",
 });
 
+// WHY: Site-wide default metadata frames the ByNimer company (the hub at "/").
+// Product pages such as /gateway override title/description/openGraph with their own.
 export const metadata: Metadata = {
   metadataBase: new URL("https://nimer.dev"),
-  title: "Nimer — The AI Gateway for the Middle East",
+  title: {
+    default: "ByNimer — Trustworthy AI, engineered from first principles",
+    template: "%s · ByNimer",
+  },
   description:
-    "Drop-in SDK that routes Claude, GPT, Gemini and 4 more providers — with a built-in safety, bias, and PII gateway. Halal AI Mode coming soon.",
+    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, an AI gateway for the Middle East.",
   keywords: [
+    "ByNimer",
+    "Nimer",
+    "Nimer Cortex",
+    "Nimer Gateway",
+    "AI research",
+    "grounded memory",
     "AI gateway",
     "LLM routing",
     "MENA AI",
     "Halal AI",
-    "Claude API",
-    "OpenAI",
-    "Gemini",
-    "AI cost optimization",
-    "Python SDK",
-    "Nimer",
   ],
-  authors: [{ name: "Nimer", url: "https://nimer.dev" }],
+  authors: [{ name: "ByNimer", url: "https://nimer.dev" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://nimer.dev",
-    siteName: "Nimer",
-    title: "Nimer — The AI Gateway for the Middle East",
+    siteName: "ByNimer",
+    title: "ByNimer — Trustworthy AI, engineered from first principles",
     description:
-      "Drop-in SDK that routes Claude, GPT, Gemini and 4 more providers — with built-in safety, bias, and PII gateway. Halal AI Mode coming soon.",
+      "ByNimer is an AI research and infrastructure company: Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, an AI gateway for the Middle East.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@trynimer",
     creator: "@trynimer",
-    title: "Nimer — The AI Gateway for the Middle East",
+    title: "ByNimer — Trustworthy AI, engineered from first principles",
     description:
-      "Drop-in SDK that routes 7 AI providers — with built-in safety gateway. Halal AI Mode coming soon.",
+      "An AI research and infrastructure company: Nimer Cortex (grounded-memory reasoning) and Nimer Gateway (AI gateway for the Middle East).",
   },
   robots: { index: true, follow: true },
 };
