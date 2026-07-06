@@ -134,8 +134,35 @@ export default function GatewayClient() {
       <section id="hero" style={{ padding: '148px 24px 80px', textAlign: 'center', position: 'relative' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
 
+          {/* Company identity — reads back to the ByNimer hub */}
+          <a
+            href="/"
+            className="fade-up"
+            aria-label="Nimer AI, a ByNimer product — go to ByNimer"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              marginBottom: 16, padding: '5px 14px 5px 6px',
+              borderRadius: 999, textDecoration: 'none',
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid var(--border)',
+              fontSize: 12.5, color: 'var(--fg-2)',
+              transition: 'border-color 0.2s, color 0.2s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--fg)'; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--fg-2)'; }}
+          >
+            <span style={{
+              width: 20, height: 20, borderRadius: 5, flexShrink: 0,
+              background: 'linear-gradient(135deg, #6366f1, #a78bfa, #C9A961)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 10, fontWeight: 700, color: '#fff',
+            }}>N</span>
+            {t.company.byline}
+            <span className="flip-on-rtl" style={{ opacity: 0.55 }}>↗</span>
+          </a>
+
           {/* Badge */}
-          <div className="badge fade-up" style={{ marginBottom: 28, display: 'inline-flex' }}>
+          <div className="badge fade-up" style={{ marginBottom: 28, display: 'flex', width: 'fit-content', marginInline: 'auto' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399', display: 'inline-block', animation: 'pulse-dot 2s ease-in-out infinite' }} />
             {t.hero.badge}
           </div>

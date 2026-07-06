@@ -30,6 +30,9 @@ export interface Dict {
     cta2: string;
     footnote: string;
   };
+  company: {
+    byline: string;
+  };
   providers: {
     eyebrow: string;
     and: string;
@@ -100,10 +103,13 @@ export const dict: Record<Locale, Dict> = {
       title1: "Cheaper, safer",
       title2: "AI from one gateway.",
       subtitle:
-        "Drop-in SDK that intelligently routes Claude, GPT, Gemini and 4 more providers — and runs every response through a safety, bias, and PII gateway.",
+        "Nimer AI is ByNimer's gateway to every major model. One drop-in SDK routes Claude, GPT, Gemini and 4 more providers — and screens every response for safety, bias, and PII before it reaches your users.",
       cta1: "Get early access",
       cta2: "View on GitHub",
       footnote: "SDK free forever · 14-day dashboard trial · No credit card",
+    },
+    company: {
+      byline: "Nimer AI · a ByNimer product",
     },
     providers: {
       eyebrow: "One SDK. 7 providers. 22+ models.",
@@ -198,10 +204,13 @@ export const dict: Record<Locale, Dict> = {
       title1: "ذكاء اصطناعي",
       title2: "أرخص وأكثر أمانًا.",
       subtitle:
-        "مكتبة جاهزة توجّه طلباتك بذكاء بين Claude وGPT وGemini و٤ مزوّدين آخرين — مع فلترة كل إجابة من المخاطر والبيانات الحسّاسة قبل أن تصل لمستخدميك.",
+        "Nimer AI هي بوابة ByNimer إلى كل النماذج الكبرى. مكتبة واحدة تندمج بسطرٍ واحد وتوجّه طلباتك بين Claude وGPT وGemini و٤ مزوّدين آخرين — وتفحص كل إجابة من المخاطر والتحيّز والبيانات الحسّاسة قبل أن تصل لمستخدميك.",
       cta1: "ابدأ مجانًا",
       cta2: "الكود على GitHub",
       footnote: "SDK مجاني للأبد · ١٤ يوم تجربة · بدون بطاقة ائتمان",
+    },
+    company: {
+      byline: "Nimer AI · منتج من ByNimer",
     },
     providers: {
       eyebrow: "مكتبة واحدة. ٧ مزوّدين. ٢٢+ نموذج.",
@@ -226,7 +235,7 @@ export const dict: Record<Locale, Dict> = {
     },
     ctaFinal: {
       badgeText: "SDK مجاني للأبد · ١٤ يوم تجربة Dashboard",
-      title1: "ابدأ الحفظ في",
+      title1: "ابدأ التوفير في",
       title2: "إصدارك القادم.",
       subtitle:
         "تغيير سطر واحد. بدون بنية تحتية. بدون مفاتيح إضافية. طلبات الذكاء الاصطناعي تصبح أرخص فورًا.",
@@ -236,7 +245,7 @@ export const dict: Record<Locale, Dict> = {
       error: "حدث خطأ — حاول مرة أخرى.",
     },
     footer: {
-      built: "© ByNimer Holdings LLC · للعالم",
+      built: "© ByNimer Holdings LLC · صُنع للعالم",
       terms: "الشروط",
       docs: "الوثائق",
       contact: "تواصل",
@@ -248,13 +257,13 @@ export const dict: Record<Locale, Dict> = {
       title1: "ذكاءٌ موثوق،",
       title2: "مبنيٌّ من المبادئ الأولى.",
       subtitle:
-        "ByNimer شركة أبحاث وبنية تحتية للذكاء الاصطناعي. نبني ذكاءً يمكن الوثوق به — نواة تفكير بذاكرة مؤرَّضة، وبوابة ذكاء إقليمية للشرق الأوسط.",
+        "ByNimer شركة أبحاث وبنية تحتية للذكاء الاصطناعي. نبني ذكاءً يمكن الوثوق به — نواة تفكير بذاكرة مُرتَكِزة على الواقع، وبوابة ذكاء إقليمية للشرق الأوسط.",
       roadmapHeader: "مشاريعنا",
       roadmap: [
         {
           title: "Nimer Cortex",
           status: "بحث · براءة قيد الإيداع",
-          desc: "نواة ذاكرة وتفكير تتعلّم باستمرار بلا تدريب تدرّجي — وتستطيع أن تُثبت لنفسها أيّ معتقداتها مؤرَّض وموثوق.",
+          desc: "نواة ذاكرة وتفكير تتعلّم باستمرار بلا تدريب تدرّجي — وتقدر أن تتحقّق بنفسها من مدى ارتكاز معتقداتها على الواقع وموثوقيتها.",
         },
         {
           title: "Nimer Gateway",
