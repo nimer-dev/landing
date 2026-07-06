@@ -146,7 +146,7 @@ export const dict: Record<Locale, Dict> = {
       terms: "Terms",
       docs: "Docs",
       contact: "Contact",
-      twitter: "Twitter",
+      twitter: "X",
       github: "GitHub",
     },
     maintenance: {
@@ -245,7 +245,7 @@ export const dict: Record<Locale, Dict> = {
       terms: "الشروط",
       docs: "الوثائق",
       contact: "تواصل",
-      twitter: "Twitter",
+      twitter: "X",
       github: "GitHub",
     },
     maintenance: {
