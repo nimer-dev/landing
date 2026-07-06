@@ -364,7 +364,7 @@ export default function HubClient() {
                   >
                     {item.desc}
                   </div>
-                  {item.href && (
+                  {item.href ? (
                     <a
                       href={item.href}
                       // WHY: only force a new tab for external product links (dashboard);
@@ -384,7 +384,19 @@ export default function HubClient() {
                     >
                       {dir === "rtl" ? "افتح ←" : "Open →"}
                     </a>
-                  )}
+                  ) : item.soon ? (
+                    <span
+                      className="font-mono"
+                      style={{
+                        display: "inline-flex",
+                        marginTop: 10,
+                        fontSize: 12,
+                        color: "var(--fg-muted)",
+                      }}
+                    >
+                      {item.soon}
+                    </span>
+                  ) : null}
                 </div>
               </li>
             ))}

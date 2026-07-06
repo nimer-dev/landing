@@ -72,7 +72,7 @@ export interface Dict {
     title2: string;
     subtitle: string;
     roadmapHeader: string;
-    roadmap: readonly { title: string; desc: string; status?: string; href?: string }[];
+    roadmap: readonly { title: string; desc: string; status?: string; href?: string; soon?: string }[];
     emailHeader: string;
     emailPlaceholder: string;
     emailSubmit: string;
@@ -168,7 +168,7 @@ export const dict: Record<Locale, Dict> = {
           title: "Nimer Gateway",
           status: "In development",
           desc: "One SDK across 7 providers and 22+ models, with virtual API keys and a Halal AI mode — the AI gateway for the Middle East.",
-          href: "/gateway",
+          soon: "Soon",
         },
         {
           title: "More on the way",
@@ -269,7 +269,7 @@ export const dict: Record<Locale, Dict> = {
           title: "Nimer Gateway",
           status: "قيد التطوير",
           desc: "مكتبة واحدة عبر ٧ مزوّدين و٢٢+ نموذجًا، مع مفاتيح API افتراضية ووضع حلال — بوابة الذكاء للشرق الأوسط.",
-          href: "/gateway",
+          soon: "قريبًا",
         },
         {
           title: "المزيد قريبًا",
