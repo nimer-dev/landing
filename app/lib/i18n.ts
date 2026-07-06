@@ -69,7 +69,7 @@ export interface Dict {
     title2: string;
     subtitle: string;
     roadmapHeader: string;
-    roadmap: readonly { title: string; desc: string }[];
+    roadmap: readonly { title: string; desc: string; status?: string; href?: string }[];
     emailHeader: string;
     emailPlaceholder: string;
     emailSubmit: string;
@@ -138,7 +138,7 @@ export const dict: Record<Locale, Dict> = {
       error: "Something went wrong — please try again.",
     },
     footer: {
-      built: "Built in Dammam, Saudi Arabia · Made for the world",
+      built: "© ByNimer Holdings LLC · Made for the world",
       terms: "Terms",
       docs: "Docs",
       contact: "Contact",
@@ -146,42 +146,38 @@ export const dict: Record<Locale, Dict> = {
       github: "GitHub",
     },
     maintenance: {
-      badge: "Building something bigger",
-      title1: "Nimer is becoming",
-      title2: "the AI Gateway for the Middle East.",
+      badge: "ByNimer",
+      title1: "Trustworthy AI,",
+      title2: "engineered from first principles.",
       subtitle:
-        "We're upgrading. Halal AI Mode, streaming, virtual API keys, function calling across 7 providers, and a redesigned dashboard — all shipping together.",
-      roadmapHeader: "What's coming",
+        "ByNimer is an AI research and infrastructure company. We build intelligence that can be trusted — a grounded-memory reasoning core, and a regional AI gateway for the Middle East.",
+      roadmapHeader: "Our projects",
       roadmap: [
         {
-          title: "Streaming responses",
-          desc: "OpenAI-compatible SSE for Claude, GPT, Gemini and 4 more providers — drop-in replacement.",
+          title: "Nimer Cortex",
+          status: "Research · Patent-pending",
+          desc: "A memory-and-reasoning core that learns continuously with zero-gradient training — and can prove to itself which of its own beliefs are grounded.",
         },
         {
-          title: "Virtual API keys",
-          desc: "Generate scoped keys per project, app, or team — with budgets, model whitelists, and per-key analytics.",
+          title: "Nimer Gateway",
+          status: "In development",
+          desc: "One SDK across 7 providers and 22+ models, with virtual API keys and a Halal AI mode — the AI gateway for the Middle East.",
+          href: "https://dashboard.nimer.dev",
         },
         {
-          title: "Function calling everywhere",
-          desc: "One unified tools API across all 7 providers — write once, route to any model.",
-        },
-        {
-          title: "Halal AI Mode",
-          desc: "First-of-its-kind Sharia-aware filtering for MENA finance, legal, edtech, and consumer apps.",
-        },
-        {
-          title: "Webhook delivery + HMAC",
-          desc: "Push usage, alerts, and policy events to your backend with signed webhooks and automatic retries.",
+          title: "More on the way",
+          status: "Coming soon",
+          desc: "New projects under the ByNimer umbrella. Join the list to hear about them first.",
         },
       ],
-      emailHeader: "Get notified when we launch",
+      emailHeader: "Follow what we're building",
       emailPlaceholder: "you@company.com",
       emailSubmit: "Notify me",
       emailSuccess: "✓ You're on the list",
       emailError: "Something went wrong — please try again.",
-      existingUser: "Already a user?",
+      existingUser: "Already a Gateway user?",
       existingUserCta: "Go to dashboard →",
-      eta: "Expected launch · June 2026",
+      eta: "New projects launching soon",
     },
   },
   ar: {
@@ -240,7 +236,7 @@ export const dict: Record<Locale, Dict> = {
       error: "حدث خطأ — حاول مرة أخرى.",
     },
     footer: {
-      built: "صُنع في الدمّام، السعودية · للعالم",
+      built: "© ByNimer Holdings LLC · للعالم",
       terms: "الشروط",
       docs: "الوثائق",
       contact: "تواصل",
@@ -248,42 +244,38 @@ export const dict: Record<Locale, Dict> = {
       github: "GitHub",
     },
     maintenance: {
-      badge: "نبني شيئًا أكبر",
-      title1: "Nimer يصبح",
-      title2: "بوابة الذكاء الاصطناعي للشرق الأوسط.",
+      badge: "ByNimer",
+      title1: "ذكاءٌ موثوق،",
+      title2: "مبنيٌّ من المبادئ الأولى.",
       subtitle:
-        "نطوّر المنصّة. وضع حلال، Streaming، مفاتيح API افتراضية، استدعاء دوالّ عبر ٧ مزوّدين، ولوحة تحكّم بتصميم جديد — كل ذلك في إطلاق واحد.",
-      roadmapHeader: "ما القادم",
+        "ByNimer شركة أبحاث وبنية تحتية للذكاء الاصطناعي. نبني ذكاءً يمكن الوثوق به — نواة تفكير بذاكرة مؤرَّضة، وبوابة ذكاء إقليمية للشرق الأوسط.",
+      roadmapHeader: "مشاريعنا",
       roadmap: [
         {
-          title: "استجابات Streaming",
-          desc: "SSE متوافق مع OpenAI لـ Claude وGPT وGemini و٤ مزوّدين آخرين — بديل مباشر بدون تغيير كود.",
+          title: "Nimer Cortex",
+          status: "بحث · براءة قيد الإيداع",
+          desc: "نواة ذاكرة وتفكير تتعلّم باستمرار بلا تدريب تدرّجي — وتستطيع أن تُثبت لنفسها أيّ معتقداتها مؤرَّض وموثوق.",
         },
         {
-          title: "مفاتيح API افتراضية",
-          desc: "أنشئ مفاتيح بصلاحيات منفصلة لكل مشروع أو فريق — مع ميزانيات وقوائم نماذج وتحليلات لكل مفتاح.",
+          title: "Nimer Gateway",
+          status: "قيد التطوير",
+          desc: "مكتبة واحدة عبر ٧ مزوّدين و٢٢+ نموذجًا، مع مفاتيح API افتراضية ووضع حلال — بوابة الذكاء للشرق الأوسط.",
+          href: "https://dashboard.nimer.dev",
         },
         {
-          title: "استدعاء الدوالّ في كل مكان",
-          desc: "واجهة tools موحّدة عبر ٧ مزوّدين — اكتب مرّة واحدة، شغّل على أي نموذج.",
-        },
-        {
-          title: "وضع الذكاء الاصطناعي الحلال",
-          desc: "فلترة شرعية مدمجة، الأولى من نوعها — للبنوك والقانون والتعليم والمستهلك في الشرق الأوسط.",
-        },
-        {
-          title: "Webhook موقّعة بـ HMAC",
-          desc: "إرسال الاستخدام والتنبيهات وأحداث السياسات إلى الـ backend مع توقيع وإعادة محاولة تلقائية.",
+          title: "المزيد قريبًا",
+          status: "قريبًا",
+          desc: "مشاريع جديدة تحت مظلّة ByNimer. سجّل لتكون أوّل من يعرف عنها.",
         },
       ],
-      emailHeader: "أبلغني عند الإطلاق",
+      emailHeader: "تابع ما نبنيه",
       emailPlaceholder: "you@company.com",
       emailSubmit: "أبلغني",
       emailSuccess: "✓ تم تسجيلك",
       emailError: "حدث خطأ — حاول مرة أخرى.",
-      existingUser: "لديك حساب بالفعل؟",
+      existingUser: "مستخدم Gateway بالفعل؟",
       existingUserCta: "ادخل لوحة التحكّم ←",
-      eta: "الإطلاق المتوقّع · يونيو ٢٠٢٦",
+      eta: "مشاريع جديدة قريبًا",
     },
   },
 };

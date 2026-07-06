@@ -8,10 +8,10 @@ import Logo from "../components/Logo";
 const FORMSPREE = "https://formspree.io/f/mnjlyawe";
 
 const ROADMAP_ICONS = [
-  // Streaming — animated lines
+  // Nimer Cortex — a small neural / node graph (the "brain")
   (
     <svg
-      key="stream"
+      key="cortex"
       width="18"
       height="18"
       viewBox="0 0 24 24"
@@ -22,16 +22,21 @@ const ROADMAP_ICONS = [
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M3 6h13" />
-      <path d="M3 12h18" opacity="0.7" />
-      <path d="M3 18h10" opacity="0.45" />
-      <path d="M19 6 L22 9 L19 12" />
+      <circle cx="6" cy="7" r="2" />
+      <circle cx="18" cy="6" r="2" />
+      <circle cx="17" cy="17" r="2" />
+      <circle cx="7" cy="17" r="2" />
+      <path d="M8 7 L16 6" opacity="0.6" />
+      <path d="M6 9 L7 15" opacity="0.6" />
+      <path d="M8 16 L15 16.5" opacity="0.6" />
+      <path d="M18 8 L17 15" opacity="0.6" />
+      <path d="M8 8 L16 16" opacity="0.4" />
     </svg>
   ),
-  // Virtual keys — key icon
+  // Nimer Gateway — a hub routing to many endpoints
   (
     <svg
-      key="keys"
+      key="gateway"
       width="18"
       height="18"
       viewBox="0 0 24 24"
@@ -42,16 +47,19 @@ const ROADMAP_ICONS = [
       strokeLinejoin="round"
       aria-hidden
     >
-      <circle cx="7" cy="14" r="4" />
-      <path d="M11 14h11" />
-      <path d="M19 14v4" />
-      <path d="M22 14v3" />
+      <circle cx="5" cy="12" r="2.2" />
+      <circle cx="19" cy="5" r="1.8" />
+      <circle cx="20" cy="12" r="1.8" />
+      <circle cx="19" cy="19" r="1.8" />
+      <path d="M7 11 L17.2 5.6" />
+      <path d="M7.2 12 L18 12" />
+      <path d="M7 13 L17.2 18.4" />
     </svg>
   ),
-  // Function calling — brackets
+  // More on the way — plus in a circle
   (
     <svg
-      key="fn"
+      key="more"
       width="18"
       height="18"
       viewBox="0 0 24 24"
@@ -62,59 +70,17 @@ const ROADMAP_ICONS = [
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M9 6 L5 12 L9 18" />
-      <path d="M15 6 L19 12 L15 18" />
-      <path d="M14 5 L10 19" opacity="0.6" />
-    </svg>
-  ),
-  // Halal — shield with check
-  (
-    <svg
-      key="halal"
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      <path d="M9 12 L11 14 L15 10" />
-    </svg>
-  ),
-  // Webhooks — circle with arrows
-  (
-    <svg
-      key="hook"
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="12" cy="12" r="3.2" />
-      <path d="M12 4 V8" />
-      <path d="M16.5 7 L14.5 9.5" />
-      <path d="M19 13 L15 13" opacity="0.65" />
-      <path d="M5 13 L9 13" opacity="0.65" />
-      <path d="M7 18 L9.5 14.5" />
+      <circle cx="12" cy="12" r="9" opacity="0.7" strokeDasharray="3 3" />
+      <path d="M12 8 V16" />
+      <path d="M8 12 H16" />
     </svg>
   ),
 ];
 
 const ROADMAP_HUES = [
-  "#818cf8", // streaming
-  "#C9A961", // keys
-  "#34d399", // fn
-  "#5fd2a8", // halal (emerald)
-  "#fbbf24", // webhooks
+  "#818cf8", // Cortex — indigo
+  "#34d399", // Gateway — emerald
+  "#C9A961", // More — gold
 ];
 
 export default function MaintenanceClient() {
@@ -354,14 +320,40 @@ export default function MaintenanceClient() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div
                     style={{
-                      fontSize: 14,
-                      fontWeight: 600,
-                      color: "var(--fg)",
-                      letterSpacing: "-0.005em",
-                      marginBottom: 4,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      flexWrap: "wrap",
+                      marginBottom: 6,
                     }}
                   >
-                    {item.title}
+                    <span
+                      style={{
+                        fontSize: 14,
+                        fontWeight: 600,
+                        color: "var(--fg)",
+                        letterSpacing: "-0.005em",
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                    {item.status && (
+                      <span
+                        className="font-mono"
+                        style={{
+                          fontSize: 10,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.06em",
+                          padding: "2px 7px",
+                          borderRadius: 999,
+                          color: ROADMAP_HUES[i],
+                          background: `${ROADMAP_HUES[i]}14`,
+                          border: `1px solid ${ROADMAP_HUES[i]}33`,
+                        }}
+                      >
+                        {item.status}
+                      </span>
+                    )}
                   </div>
                   <div
                     style={{
@@ -372,6 +364,25 @@ export default function MaintenanceClient() {
                   >
                     {item.desc}
                   </div>
+                  {item.href && (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 5,
+                        marginTop: 10,
+                        fontSize: 12,
+                        color: ROADMAP_HUES[i],
+                        textDecoration: "none",
+                      }}
+                    >
+                      {dir === "rtl" ? "افتح ←" : "Open →"}
+                    </a>
+                  )}
                 </div>
               </li>
             ))}

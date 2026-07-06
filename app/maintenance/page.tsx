@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import MaintenanceClient from "./MaintenanceClient";
 
 export const metadata: Metadata = {
-  title: "Nimer — Building something bigger",
+  title: "ByNimer — Trustworthy AI, engineered from first principles",
   description:
-    "Nimer is upgrading into the AI Gateway for the Middle East. Halal AI Mode, streaming, virtual keys and a redesigned dashboard — coming soon.",
+    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, an AI gateway for the Middle East.",
   robots: { index: false, follow: false },
 };
 
