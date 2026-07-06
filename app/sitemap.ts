@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+// WHY: /gateway is intentionally excluded — it redirects to "/" until the
+// product page is ready for public visitors (see app/gateway/page.tsx).
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -7,12 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
-    },
-    {
-      url: "https://nimer.dev/gateway",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
     },
   ];
 }
