@@ -212,17 +212,6 @@ export default function GatewayClient() {
               {t.hero.cta1}
               <span className="flip-on-rtl" style={{ marginInlineStart: 4 }}>→</span>
             </button>
-            <a
-              href="https://github.com/nimer-dev/optimizer-sdk"
-              target="_blank" rel="noopener noreferrer"
-              className="btn-ghost"
-              style={{ padding: '12px 24px', fontSize: 14, borderRadius: 8, fontFamily: 'inherit' }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-              </svg>
-              {t.hero.cta2}
-            </a>
           </div>
 
           <p className="fade-up" style={{ fontSize: 12, color: 'var(--fg-muted)', animationDelay: '220ms' }}>
@@ -351,8 +340,8 @@ export default function GatewayClient() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
                 { name: 'claude-haiku-4.5',  price: '$0.25',  pct: 2,   color: '#34d399' },
-                { name: 'claude-sonnet-4.6', price: '$3.00',  pct: 20,  color: '#6366f1' },
-                { name: 'claude-opus-4.7',   price: '$15.00', pct: 100, color: '#a78bfa' },
+                { name: 'claude-sonnet-5',   price: '$3.00',  pct: 20,  color: '#6366f1' },
+                { name: 'claude-opus-4.8',   price: '$15.00', pct: 100, color: '#a78bfa' },
               ].map((m) => (
                 <div key={m.name} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <span className="font-mono" style={{ width: 130, fontSize: 12, color: 'var(--fg-muted)', flexShrink: 0 }}>
@@ -447,7 +436,7 @@ export default function GatewayClient() {
                   {kw('from')} anthropic {kw('import')} {cls('Anthropic')}{'\n\n'}
                   client = {cls('Anthropic')}(){'\n'}
                   resp = client.messages.{fn('create')}({'\n'}
-                  {'    '}{acc('model')}{str('"claude-sonnet-4-6"')},{'\n'}
+                  {'    '}{acc('model')}{str('"claude-sonnet-5"')},{'\n'}
                   {'    '}{acc('max_tokens')}{num('1024')},{'\n'}
                   {'    '}{acc('messages')}=[{'{'}
                   {str('"role"')}: {str('"user"')},{'\n'}
@@ -474,7 +463,7 @@ export default function GatewayClient() {
                   {kw('from')} {cls('nimer')} {kw('import')} {cls('Anthropic')}{'\n\n'}
                   client = {cls('Anthropic')}(){'\n'}
                   resp = client.messages.{fn('create')}({'\n'}
-                  {'    '}{acc('model')}{str('"claude-sonnet-4-6"')},{'\n'}
+                  {'    '}{acc('model')}{str('"claude-sonnet-5"')},{'\n'}
                   {'    '}{acc('max_tokens')}{num('1024')},{'\n'}
                   {'    '}{acc('messages')}=[{'{'}
                   {str('"role"')}: {str('"user"')},{'\n'}
@@ -522,7 +511,7 @@ export default function GatewayClient() {
               of what you save.
             </h2>
             <p style={{ fontSize: 15, color: 'var(--fg-2)' }}>
-              The SDK is free forever. Pay only for the dashboard and advanced features.
+              The SDK is free forever. Paid tiers for the dashboard and advanced features are on the way.
             </p>
 
             <div style={{
@@ -537,7 +526,7 @@ export default function GatewayClient() {
             }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#34d399', flexShrink: 0, animation: 'pulse-dot 2s ease-in-out infinite' }} />
               <span style={{ fontSize: 13, color: 'var(--fg-2)' }}>
-                Paid plans activating soon —{' '}
+                Pricing coming soon —{' '}
                 <span style={{ color: '#a5b4fc', fontWeight: 500 }}>start your free trial now</span>
               </span>
             </div>
@@ -547,7 +536,6 @@ export default function GatewayClient() {
             {[
               {
                 name: 'Free',
-                price: '$0',
                 sub: 'forever',
                 desc: 'For solo developers exploring intelligent routing.',
                 features: ['Full SDK access', 'Community routing rules', 'Local logging only', 'MIT open source'],
@@ -557,8 +545,7 @@ export default function GatewayClient() {
               },
               {
                 name: 'Pro',
-                price: '$29',
-                sub: '/ month',
+                sub: 'Coming soon',
                 desc: 'For builders shipping products with Claude.',
                 features: ['Everything in Free', 'Trust gateway + safety scores', 'Custom policy engine (block/redact)', 'Budget + safety alerts', 'Email support'],
                 hl: true,
@@ -567,8 +554,7 @@ export default function GatewayClient() {
               },
               {
                 name: 'Scale',
-                price: '$99',
-                sub: '/ month',
+                sub: 'Coming soon',
                 desc: 'For teams running Claude in production.',
                 features: ['Everything in Pro', 'Team seats (5+)', 'Full audit log + SSO', 'Red-team reports', 'SLA + priority support'],
                 hl: false,
@@ -602,9 +588,8 @@ export default function GatewayClient() {
                 <div style={{ marginBottom: 6, fontSize: 15, fontWeight: 600, color: 'var(--fg)' }}>{tier.name}</div>
                 <p style={{ fontSize: 13, color: 'var(--fg-muted)', marginBottom: 20, lineHeight: 1.5 }}>{tier.desc}</p>
 
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 5, marginBottom: 28 }}>
-                  <span style={{ fontSize: 44, fontWeight: 700, color: tier.hl ? 'var(--accent)' : 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1 }}>{tier.price}</span>
-                  <span className="font-mono" style={{ fontSize: 12, color: 'var(--fg-muted)' }}>{tier.sub}</span>
+                <div style={{ marginBottom: 28 }}>
+                  <span className="font-mono" style={{ fontSize: 13, fontWeight: 600, color: tier.hl ? 'var(--accent)' : 'var(--fg-muted)', letterSpacing: '0.02em', textTransform: 'uppercase' }}>{tier.sub}</span>
                 </div>
 
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 24, flex: 1, padding: 0, listStyle: 'none' }}>
@@ -724,10 +709,13 @@ export default function GatewayClient() {
 
           {/* Links */}
           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+            {/* GitHub: name only, not linked — source repo isn't public-facing yet */}
+            <span
+              className="font-mono"
+              style={{ padding: '6px 12px', fontSize: 12, color: 'var(--fg-muted)' }}
+            >{t.footer.github}</span>
             {[
-              { label: t.footer.github,   href: 'https://github.com/nimer-dev' },
               { label: t.footer.twitter,  href: 'https://twitter.com/trynimer' },
-              { label: t.footer.docs,     href: 'https://github.com/nimer-dev/optimizer-sdk' },
               { label: t.footer.contact,  href: 'mailto:nimershahm@gmail.com' },
             ].map((l) => (
               <a

@@ -28,8 +28,8 @@ const DEMOS = [
 
 const MODELS = [
   { id: "haiku",  label: "claude-haiku-4.5",   price: "$0.25/M",  color: "#34d399" },
-  { id: "sonnet", label: "claude-sonnet-4.6",  price: "$3.00/M",  color: "#6366f1" },
-  { id: "opus",   label: "claude-opus-4.7",    price: "$15.00/M", color: "#a78bfa" },
+  { id: "sonnet", label: "claude-sonnet-5",    price: "$3.00/M",  color: "#6366f1" },
+  { id: "opus",   label: "claude-opus-4.8",    price: "$15.00/M", color: "#a78bfa" },
 ];
 
 export default function RoutingDemo() {
