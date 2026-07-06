@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 
-// WHY: Default social-preview image for the ByNimer company hub (root and all
-// non-product routes). The Gateway product route has its own OG image.
-export const alt = "ByNimer — Trustworthy AI, engineered from first principles";
+export const alt = "Nimer Optimizer — Cut Claude API costs ~60%";
 export const size = {
   width: 1200,
   height: 630,
@@ -19,7 +17,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#070710",
+          background: "#0a0e1a",
           padding: 80,
           fontFamily: "system-ui, sans-serif",
         }}
@@ -30,44 +28,45 @@ export default async function Image() {
               width: 56,
               height: 56,
               borderRadius: 12,
-              background: "linear-gradient(135deg, #6366f1, #a78bfa, #C9A961)",
+              background: "#5b8cff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#fff",
-              fontSize: 32,
+              color: "#0a0e1a",
+              fontSize: 36,
               fontWeight: 700,
             }}
           >
             N
           </div>
           <div style={{ color: "#e6e8ef", fontSize: 36, fontWeight: 600 }}>
-            ByNimer
+            Nimer
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <div
             style={{
               color: "#e6e8ef",
-              fontSize: 76,
+              fontSize: 88,
               fontWeight: 600,
               lineHeight: 1.05,
               letterSpacing: -2,
             }}
           >
-            Trustworthy AI,
+            Cut Claude API costs
           </div>
           <div
             style={{
-              color: "#a5b4fc",
-              fontSize: 76,
+              color: "#5b8cff",
+              fontSize: 88,
               fontWeight: 600,
               lineHeight: 1.05,
               letterSpacing: -2,
+              fontStyle: "italic",
             }}
           >
-            engineered from first principles.
+            ~60%.
           </div>
         </div>
 
@@ -80,7 +79,7 @@ export default async function Image() {
             fontSize: 26,
           }}
         >
-          <div>Nimer Cortex · Nimer Gateway</div>
+          <div>Drop-in Python SDK · Smart model routing</div>
           <div style={{ color: "#e6e8ef" }}>nimer.dev</div>
         </div>
       </div>

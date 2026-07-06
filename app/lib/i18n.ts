@@ -114,7 +114,7 @@ export const dict: Record<Locale, Dict> = {
       title: "Halal AI Mode",
       titleAccent: "for the Muslim world.",
       desc:
-        "The first AI gateway with built-in Sharia-aware filtering. Block riba, gharar, and haram content. Generate finance, legal, and education answers your compliance team can sign off on.",
+        "An AI gateway with built-in Sharia-aware filtering. Block riba, gharar, and haram content. Generate finance, legal, and education answers your compliance team can sign off on.",
       bullets: [
         "Filtered against a curated Islamic finance & ethics policy",
         "Optional — toggle per request, per user, or per environment",
@@ -162,7 +162,7 @@ export const dict: Record<Locale, Dict> = {
           title: "Nimer Gateway",
           status: "In development",
           desc: "One SDK across 7 providers and 22+ models, with virtual API keys and a Halal AI mode — the AI gateway for the Middle East.",
-          href: "https://dashboard.nimer.dev",
+          href: "/gateway",
         },
         {
           title: "More on the way",
@@ -212,7 +212,7 @@ export const dict: Record<Locale, Dict> = {
       title: "وضع الذكاء الاصطناعي",
       titleAccent: "الحلال.",
       desc:
-        "أوّل بوابة ذكاء اصطناعي بفلترة شرعية مدمجة. ترفض الربا والغرر والمحتوى المحرّم. تولّد إجابات مالية وقانونية وتعليمية يقبلها فريق الامتثال لديك.",
+        "بوابة ذكاء اصطناعي بفلترة شرعية مدمجة. ترفض الربا والغرر والمحتوى المحرّم. تولّد إجابات مالية وقانونية وتعليمية يقبلها فريق الامتثال لديك.",
       bullets: [
         "مفلترة وفق سياسة تمويل وأخلاقيات إسلامية موثّقة",
         "اختيارية — قابلة للتفعيل لكل طلب أو مستخدم أو بيئة",
@@ -260,7 +260,7 @@ export const dict: Record<Locale, Dict> = {
           title: "Nimer Gateway",
           status: "قيد التطوير",
           desc: "مكتبة واحدة عبر ٧ مزوّدين و٢٢+ نموذجًا، مع مفاتيح API افتراضية ووضع حلال — بوابة الذكاء للشرق الأوسط.",
-          href: "https://dashboard.nimer.dev",
+          href: "/gateway",
         },
         {
           title: "المزيد قريبًا",

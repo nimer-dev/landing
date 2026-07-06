@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale } from "../lib/LocaleContext";
-import LocaleSwitcher from "../components/LocaleSwitcher";
-import Logo from "../components/Logo";
+import { useLocale } from "./lib/LocaleContext";
+import LocaleSwitcher from "./components/LocaleSwitcher";
+import Logo from "./components/Logo";
 
 const FORMSPREE = "https://formspree.io/f/mnjlyawe";
 
@@ -83,7 +83,7 @@ const ROADMAP_HUES = [
   "#C9A961", // More — gold
 ];
 
-export default function MaintenanceClient() {
+export default function HubClient() {
   const { t, dir } = useLocale();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -367,8 +367,10 @@ export default function MaintenanceClient() {
                   {item.href && (
                     <a
                       href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      // WHY: only force a new tab for external product links (dashboard);
+                      // the internal /gateway marketing page should navigate in-place.
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="font-mono"
                       style={{
                         display: "inline-flex",
