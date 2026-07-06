@@ -6,7 +6,7 @@ import HubClient from "./HubClient";
 export const metadata: Metadata = {
   title: { absolute: "ByNimer — Trustworthy AI, engineered from first principles" },
   description:
-    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, an AI gateway for the Middle East.",
+    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, a global AI gateway.",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
 };

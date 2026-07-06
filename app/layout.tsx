@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s · ByNimer",
   },
   description:
-    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, an AI gateway for the Middle East.",
+    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, a global AI gateway.",
   keywords: [
     "ByNimer",
     "Nimer",
@@ -33,7 +33,6 @@ export const metadata: Metadata = {
     "grounded memory",
     "AI gateway",
     "LLM routing",
-    "MENA AI",
     "Halal AI",
   ],
   authors: [{ name: "ByNimer", url: "https://nimer.dev" }],
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "ByNimer",
     title: "ByNimer — Trustworthy AI, engineered from first principles",
     description:
-      "ByNimer is an AI research and infrastructure company: Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, an AI gateway for the Middle East.",
+      "ByNimer is an AI research and infrastructure company: Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, a global AI gateway.",
   },
   twitter: {
     card: "summary_large_image",
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
     creator: "@trynimer",
     title: "ByNimer — Trustworthy AI, engineered from first principles",
     description:
-      "An AI research and infrastructure company: Nimer Cortex (grounded-memory reasoning) and Nimer Gateway (AI gateway for the Middle East).",
+      "An AI research and infrastructure company: Nimer Cortex (grounded-memory reasoning) and Nimer Gateway (global AI gateway).",
   },
   robots: { index: true, follow: true },
 };
