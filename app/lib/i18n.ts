@@ -27,6 +27,8 @@ export interface Dict {
       ctaResearch: string;
       ctaFollow: string;
       note: string;
+      figCaption: string;
+      stats: readonly { value: string; label: string }[];
     };
     belief: { eyebrow: string; body: string };
     metaphor: {
@@ -82,7 +84,13 @@ export const dict: Record<Locale, Dict> = {
           "ByNimer is an AI research company building a memory that reasons — and grounds itself in the real world. We build in the open and publish our results honestly, including the ones that failed.",
         ctaResearch: "Read the research",
         ctaFollow: "Follow what we're building",
-        note: "Patent-pending · Reproducible · Runs on a single 6 GB GPU",
+        note: "Patent-pending · Reproducible",
+        figCaption: "12 → 1 · symmetry becomes grounding · Paper 4",
+        stats: [
+          { value: "5", label: "Inventions filed" },
+          { value: "2", label: "Papers published" },
+          { value: "Open", label: "& reproducible" },
+        ],
       },
       belief: {
         eyebrow: "What we believe",
@@ -174,7 +182,13 @@ export const dict: Record<Locale, Dict> = {
           "ByNimer شركة أبحاث ذكاء اصطناعي تبني ذاكرةً تفكّر — وترتكز على الواقع. نبني في العلن وننشر نتائجنا بصدق، بما فيها التي أخفقت.",
         ctaResearch: "اقرأ الأبحاث",
         ctaFollow: "تابِع ما نبنيه",
-        note: "براءة قيد الإيداع · قابل لإعادة الإنتاج · يعمل على معالج رسومات ٦ غيغابايت واحد",
+        note: "براءة قيد الإيداع · قابل لإعادة الإنتاج",
+        figCaption: "١٢ ← ١ · التماثل يصير تأريضًا · الورقة ٤",
+        stats: [
+          { value: "٥", label: "اختراعات مُودَعة" },
+          { value: "٢", label: "ورقتان منشورتان" },
+          { value: "مفتوح", label: "وقابل للإنتاج" },
+        ],
       },
       belief: {
         eyebrow: "بماذا نؤمن",

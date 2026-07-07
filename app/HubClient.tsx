@@ -105,101 +105,130 @@ function Nav({ home }: { home: Dict["home"] }) {
 }
 
 /* ────────────────────────── Hero ─────────────────────────── */
+// WHY: two-column hero — copy on the lead side, a framed "specimen" figure on the other,
+// then a full-width proof strip anchoring the bottom edge. This fills the column width
+// and reads as one deliberate composition instead of text hugging one edge with a
+// floating ornament. Collapses to a single stacked column below 900px (see .hero-grid).
 function Hero({ home, dir, arrow }: { home: Dict["home"]; dir: string; arrow: string }) {
   return (
-    <section style={{ position: "relative", paddingTop: "clamp(72px, 12vw, 128px)", paddingBottom: "clamp(48px, 8vw, 88px)" }}>
+    <section style={{ position: "relative", paddingTop: "clamp(72px, 12vw, 128px)", paddingBottom: "clamp(40px, 7vw, 72px)" }}>
       <div className="hero-aura" />
-      <HeroRing />
-      <div style={{ position: "relative", zIndex: 2, maxWidth: 780 }}>
-        <div
-          className="reveal badge"
-          style={{ background: "rgba(201,169,97,0.1)", borderColor: "rgba(201,169,97,0.32)", color: GOLD, marginBottom: 26 }}
-        >
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: GOLD, animation: "pulse-dot 2s ease-in-out infinite" }} />
-          {home.hero.badge}
-        </div>
+      <div className="hero-grid" style={{ position: "relative", zIndex: 2 }}>
+        {/* ── Left: copy ── */}
+        <div>
+          <div
+            className="reveal badge"
+            style={{ background: "rgba(201,169,97,0.1)", borderColor: "rgba(201,169,97,0.32)", color: GOLD, marginBottom: 26 }}
+          >
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: GOLD, animation: "pulse-dot 2s ease-in-out infinite" }} />
+            {home.hero.badge}
+          </div>
 
-        <h1
-          className="reveal"
-          style={{
-            fontSize: "clamp(36px, 6vw, 66px)",
-            fontWeight: 700,
-            lineHeight: 1.06,
-            letterSpacing: "-0.03em",
-            margin: "0 0 24px",
-            color: "var(--fg)",
-          }}
-        >
-          {home.hero.title1}
-          <br />
-          <span
+          <h1
+            className="reveal"
             style={{
-              background: "linear-gradient(135deg, #818cf8 0%, #c084fc 52%, #C9A961 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              fontSize: "clamp(34px, 5vw, 58px)",
+              fontWeight: 700,
+              lineHeight: 1.07,
+              letterSpacing: "-0.03em",
+              margin: "0 0 24px",
+              color: "var(--fg)",
             }}
           >
-            {home.hero.title2}
-          </span>
-        </h1>
+            {home.hero.title1}
+            <br />
+            <span
+              style={{
+                background: "linear-gradient(135deg, #818cf8 0%, #c084fc 52%, #C9A961 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              {home.hero.title2}
+            </span>
+          </h1>
 
-        <p className="reveal" style={{ fontSize: 18, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: 620, margin: "0 0 34px" }}>
-          {home.hero.subtitle}
-        </p>
+          <p className="reveal" style={{ fontSize: 18, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: 560, margin: "0 0 34px" }}>
+            {home.hero.subtitle}
+          </p>
 
-        <div className="reveal" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 22 }}>
-          <a href="/research" className="btn-primary" style={{ padding: "12px 22px", borderRadius: 9, fontSize: 15 }}>
-            {home.hero.ctaResearch} <span className="flip-on-rtl">{arrow}</span>
-          </a>
-          <a href="#follow" className="btn-ghost" style={{ padding: "12px 22px", borderRadius: 9, fontSize: 15 }}>
-            {home.hero.ctaFollow}
-          </a>
+          <div className="reveal" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 22 }}>
+            <a href="/research" className="btn-primary" style={{ padding: "12px 22px", borderRadius: 9, fontSize: 15 }}>
+              {home.hero.ctaResearch} <span className="flip-on-rtl">{arrow}</span>
+            </a>
+            <a href="#follow" className="btn-ghost" style={{ padding: "12px 22px", borderRadius: 9, fontSize: 15 }}>
+              {home.hero.ctaFollow}
+            </a>
+          </div>
+
+          <p className="reveal font-mono" style={{ fontSize: 12, color: "var(--fg-muted)", letterSpacing: "0.03em", margin: 0 }}>
+            {home.hero.note}
+          </p>
         </div>
 
-        <p className="reveal font-mono" style={{ fontSize: 12, color: "var(--fg-muted)", letterSpacing: "0.03em", margin: 0 }}>
-          {home.hero.note}
-        </p>
+        {/* ── Right: framed specimen figure (the 12→1 symmetry ring) ── */}
+        <HeroFigure caption={home.hero.figCaption} dir={dir} />
+      </div>
+
+      {/* ── Proof strip ── */}
+      <div className="hero-stats reveal">
+        {home.hero.stats.map((s) => (
+          <div key={s.label} className="hero-stat">
+            <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.1 }}>{s.value}</div>
+            <div style={{ fontSize: 13, color: "var(--fg-2)", marginTop: 5 }}>{s.label}</div>
+          </div>
+        ))}
       </div>
     </section>
   );
 }
 
-// WHY: decorative hero motif — the 12→1 symmetry ring from Paper 4 (twelve nodes on a
-// cycle, one grounded and lit). Slowly orbits; sits faint behind the hero copy. Purely
-// ornamental (aria-hidden), reinforcing the flagship idea without words.
-function HeroRing() {
+// WHY: the flagship motif presented as a labelled figure, not a floating ornament — the
+// 12→1 symmetry ring from Paper 4 (twelve nodes on a cycle, one grounded and lit) inside
+// a framed specimen card with a mono caption tying it to the research. The ring itself is
+// aria-hidden (decorative); the caption carries the meaning.
+function HeroFigure({ caption, dir }: { caption: string; dir: string }) {
   const cx = 130;
   const cy = 130;
-  const r = 104;
+  const r = 100;
   const nodes = Array.from({ length: 12 }, (_, i) => {
     const a = (Math.PI / 6) * i - Math.PI / 2;
     return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
   });
   return (
-    <svg
-      aria-hidden
-      viewBox="0 0 260 260"
+    <figure
+      className="reveal"
       style={{
-        position: "absolute",
-        insetInlineEnd: "-40px",
-        top: "clamp(40px, 7vw, 96px)",
-        width: "clamp(220px, 34vw, 380px)",
-        height: "clamp(220px, 34vw, 380px)",
-        opacity: 0.5,
-        zIndex: 1,
-        pointerEvents: "none",
+        margin: 0,
+        border: "1px solid var(--border)",
+        background: "radial-gradient(120% 120% at 50% 0%, rgba(99,102,241,0.08), transparent 70%), var(--bg-card)",
+        borderRadius: 18,
+        padding: "clamp(20px, 3vw, 32px)",
       }}
     >
-      <g className="orbit-slow">
-        <circle cx={cx} cy={cy} r={r} fill="none" stroke={ACCENT} strokeOpacity="0.28" strokeWidth="1" />
-        {nodes.map((n, i) => (
-          <circle key={i} cx={n.x} cy={n.y} r={i === 0 ? 6 : 3} fill={i === 0 ? GOLD : ACCENT} fillOpacity={i === 0 ? 0.95 : 0.42} />
-        ))}
-        <line x1={cx} y1={cy} x2={nodes[0].x} y2={nodes[0].y} stroke={GOLD} strokeOpacity="0.55" strokeWidth="1.2" />
-        <circle cx={cx} cy={cy} r="2.5" fill={ACCENT} fillOpacity="0.7" />
-      </g>
-    </svg>
+      <svg
+        aria-hidden
+        viewBox="0 0 260 260"
+        style={{ display: "block", width: "100%", maxWidth: 340, height: "auto", margin: "0 auto" }}
+      >
+        <g className="orbit-slow">
+          <circle cx={cx} cy={cy} r={r} fill="none" stroke={ACCENT} strokeOpacity="0.3" strokeWidth="1" />
+          {nodes.map((n, i) => (
+            <line key={`l${i}`} x1={cx} y1={cy} x2={n.x} y2={n.y} stroke={ACCENT} strokeOpacity={i === 0 ? 0.55 : 0.08} strokeWidth={i === 0 ? 1.4 : 1} />
+          ))}
+          {nodes.map((n, i) => (
+            <circle key={i} cx={n.x} cy={n.y} r={i === 0 ? 7 : 3.5} fill={i === 0 ? GOLD : ACCENT} fillOpacity={i === 0 ? 0.95 : 0.45} />
+          ))}
+          <circle cx={cx} cy={cy} r="3" fill={ACCENT} fillOpacity="0.8" />
+        </g>
+      </svg>
+      <figcaption
+        style={{ marginTop: 18, fontSize: 11.5, color: "var(--fg-muted)", letterSpacing: "0.04em", textAlign: "center", direction: dir === "rtl" ? "rtl" : "ltr" }}
+      >
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 

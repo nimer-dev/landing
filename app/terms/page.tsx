@@ -18,68 +18,56 @@ export default function TermsPage() {
           Terms and Conditions
         </h1>
         <p style={{ color: "#7a859e", fontSize: 14, marginBottom: 48 }}>
-          Last updated: May 5, 2026
+          Last updated: July 8, 2026
         </p>
 
         {[
           {
             title: "1. Acceptance of Terms",
-            body: `By accessing or using Nimer ("the Service"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the Service. Nimer is operated by Majdi Bali ("we", "us", or "our").`,
+            body: `By accessing or using nimer.dev ("the Website"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the Website. Nimer (ByNimer) is an AI research effort operated by Majdi Bali ("we", "us", or "our").`,
           },
           {
-            title: "2. Description of Service",
-            body: `Nimer provides a Python SDK and web dashboard that intelligently routes Claude API requests to the most cost-effective model (Haiku, Sonnet, or Opus) based on task complexity. The Service includes a 14-day free trial followed by paid subscription plans.`,
+            title: "2. About Nimer",
+            body: `Nimer is an artificial-intelligence research company. This Website is an informational and research publication site: it presents our research papers, project updates, and an option to follow our work. We do not sell a product or service through this Website, and no account, payment, or subscription is required to use it.`,
           },
           {
-            title: "3. User Accounts",
-            body: `You must create an account to use the Service. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must notify us immediately of any unauthorized use of your account.`,
+            title: "3. Use of the Website",
+            body: `You may read, reference, and share the content on this Website for personal, educational, and non-commercial purposes, with attribution. You agree not to: (a) violate any applicable laws or regulations; (b) attempt to gain unauthorized access to our systems or disrupt the Website; (c) scrape, mirror, or republish the Website at scale without prior written consent; (d) misrepresent our research or attribute claims to us that we have not made.`,
           },
           {
-            title: "4. API Keys",
-            body: `You are responsible for keeping your Nimer API keys secure. Do not share your API keys publicly. We are not liable for any damages resulting from unauthorized use of your API keys. You may revoke and regenerate API keys at any time from your dashboard.`,
+            title: "4. Updates and Email Sign-up",
+            body: `If you choose to submit your email address to follow our work, you consent to receive occasional updates about our research. We do not send spam and do not sell your email address. You may unsubscribe at any time by contacting us at nimershahm@gmail.com.`,
           },
           {
-            title: "5. Acceptable Use",
-            body: `You agree not to use the Service to: (a) violate any applicable laws or regulations; (b) infringe the intellectual property rights of others; (c) transmit harmful, offensive, or malicious content; (d) attempt to gain unauthorized access to our systems; (e) resell or sublicense the Service without prior written consent.`,
+            title: "5. Research Content and Accuracy",
+            body: `The research, results, and figures published here describe ongoing scientific work. They are provided "as is" for informational purposes, may be preliminary, and may be revised, superseded, or withdrawn as the research progresses. Nothing on this Website is professional, legal, financial, or medical advice, and it should not be relied upon as such.`,
           },
           {
-            title: "6. Payment and Billing",
-            body: `Paid plans are billed monthly. Payments are processed through our US company via Stripe (or another processor we disclose at checkout). By subscribing, you authorize us to charge your payment method on a recurring basis. Subscriptions auto-renew unless cancelled before the renewal date. The Scale plan may be fulfilled manually via direct contact when noted on the pricing page.`,
+            title: "6. Intellectual Property",
+            body: `All content on this Website — including research papers, text, figures, diagrams, logos, and the Nimer name — is the property of Nimer or its owner and is protected by applicable intellectual-property laws. Certain inventions described in our research are the subject of one or more pending patent applications ("patent-pending"). No license to any patent, trademark, or other intellectual-property right is granted by your use of this Website, except the limited permission to read and reference content described in Section 3. Any source code we release separately is governed by the license accompanying that code.`,
           },
           {
-            title: "7. Free Trial",
-            body: `New accounts receive a 14-day free trial. No credit card is required for the trial. After the trial period, continued access to paid features requires a subscription. We reserve the right to modify or discontinue the free trial at any time.`,
+            title: "7. Third-Party Links",
+            body: `This Website may link to third-party sites (for example, our social media profiles or hosting providers). We are not responsible for the content, policies, or practices of those third parties, and linking does not imply endorsement.`,
           },
           {
-            title: "8. Refunds",
-            body: `If you are not satisfied with the Service, contact us at nimershahm@gmail.com within 7 days of your first charge for a full refund. Refund requests after 7 days are evaluated on a case-by-case basis.`,
+            title: "8. Privacy",
+            body: `We collect only the minimal information needed to operate this Website. If you submit your email address, we store it solely to send you the updates you requested. We do not sell personal data to third parties. Basic, aggregate technical information (such as standard server logs) may be processed by our hosting and form providers to deliver and secure the Website.`,
           },
           {
-            title: "9. Data and Privacy",
-            body: `We collect and process data as described in our Privacy Policy. We do not store the content of your API requests. We collect usage metadata (token counts, model used, cost) to provide the Service. Your data is not sold to third parties.`,
+            title: "9. Disclaimer of Warranties",
+            body: `This Website and its content are provided "as is" and "as available", without warranties of any kind, express or implied, including fitness for a particular purpose, accuracy, or non-infringement. We do not warrant that the Website will be uninterrupted, error-free, or free of harmful components.`,
           },
           {
-            title: "10. Service Availability",
-            body: `We strive to maintain 99.9% uptime but do not guarantee uninterrupted availability. We are not liable for any losses resulting from service downtime, maintenance, or technical issues. We will notify users of planned maintenance when possible.`,
+            title: "10. Limitation of Liability",
+            body: `To the maximum extent permitted by law, Nimer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including lost profits or data, arising from your use of, or inability to use, this Website or its content.`,
           },
           {
-            title: "11. Intellectual Property",
-            body: `The Nimer SDK is open source and licensed under the MIT License. The dashboard, API, and all associated software remain the property of Nimer. You may not copy, modify, or distribute the dashboard software without permission.`,
+            title: "11. Changes to These Terms",
+            body: `We may update these Terms at any time. Material changes will be reflected by updating the "Last updated" date above. Your continued use of the Website after changes take effect constitutes acceptance of the revised Terms.`,
           },
           {
-            title: "12. Limitation of Liability",
-            body: `To the maximum extent permitted by law, Nimer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including lost profits or data, arising from your use of the Service. Our total liability shall not exceed the amount you paid us in the 3 months preceding the claim.`,
-          },
-          {
-            title: "13. Termination",
-            body: `We reserve the right to suspend or terminate your account at any time for violation of these Terms. You may cancel your account at any time from the dashboard. Upon termination, your access to the Service will cease and your data may be deleted after 30 days.`,
-          },
-          {
-            title: "14. Changes to Terms",
-            body: `We may update these Terms at any time. We will notify users of material changes via email. Continued use of the Service after changes constitutes acceptance of the new Terms.`,
-          },
-          {
-            title: "15. Contact",
+            title: "12. Contact",
             body: `For questions about these Terms, contact us at: nimershahm@gmail.com`,
           },
         ].map((section) => (

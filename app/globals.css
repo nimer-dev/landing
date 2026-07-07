@@ -296,6 +296,35 @@ html[dir="rtl"] .flip-on-rtl { transform: scaleX(-1); }
   color: var(--fg);
 }
 
+/* Hero: two-column grid — copy left, framed specimen figure right. Collapses to a
+   single stacked column below 900px (text first, figure beneath). RTL-safe (grid +
+   logical properties handle direction automatically). */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 56px);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: 1.12fr 0.88fr; }
+}
+
+/* Hero proof strip — quiet stat tiles that anchor the hero's bottom edge full-width. */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  margin-top: clamp(36px, 6vw, 56px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--border);
+}
+.hero-stat {
+  background: var(--bg);
+  padding: 22px 24px;
+}
+
 /* Soft radial aura behind the hero — deep, not neon (calm-scientific). */
 .hero-aura {
   position: absolute;
