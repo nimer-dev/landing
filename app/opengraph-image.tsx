@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 
 // WHY: Default social-preview image for the ByNimer company hub (root and all
-// non-product routes). The Gateway product route has its own OG image.
-export const alt = "ByNimer — Trustworthy AI, engineered from first principles";
+// non-product routes), led by Nimer Cortex.
+export const alt = "ByNimer — A brain that grows through architecture, not scale";
 export const size = {
   width: 1200,
   height: 630,
@@ -50,24 +50,24 @@ export default async function Image() {
           <div
             style={{
               color: "#e6e8ef",
-              fontSize: 76,
+              fontSize: 72,
               fontWeight: 600,
               lineHeight: 1.05,
               letterSpacing: -2,
             }}
           >
-            Trustworthy AI,
+            A brain that grows through
           </div>
           <div
             style={{
               color: "#a5b4fc",
-              fontSize: 76,
+              fontSize: 72,
               fontWeight: 600,
               lineHeight: 1.05,
               letterSpacing: -2,
             }}
           >
-            engineered from first principles.
+            architecture, not scale.
           </div>
         </div>
 
@@ -80,7 +80,7 @@ export default async function Image() {
             fontSize: 26,
           }}
         >
-          <div>Nimer Cortex · Nimer Gateway</div>
+          <div>Nimer Cortex · Research</div>
           <div style={{ color: "#e6e8ef" }}>nimer.dev</div>
         </div>
       </div>

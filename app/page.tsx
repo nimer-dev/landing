@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import HubClient from "./HubClient";
 
-// WHY: The root of nimer.dev is the ByNimer company hub (Cortex + Gateway).
-// It is indexable now that the site is leaving pre-launch maintenance mode.
+// WHY: The root of nimer.dev is the ByNimer company hub, led by Nimer Cortex — the
+// grounded-memory reasoning core. Research-first framing; indexable.
 export const metadata: Metadata = {
-  title: { absolute: "ByNimer — Trustworthy AI, engineered from first principles" },
+  title: { absolute: "ByNimer — A brain that grows through architecture, not scale" },
   description:
-    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, a global AI gateway.",
+    "ByNimer is an AI research company building Nimer Cortex, a grounded-memory reasoning core that learns without gradients. We build in the open and publish our results honestly.",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
 };

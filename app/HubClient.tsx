@@ -1,90 +1,378 @@
 "use client";
 
-import { useState } from "react";
+// WHY: The live ByNimer homepage. A Cortex-led, research-first company site in the
+// calm-scientific register (deep background, soft auras, generous whitespace, quiet
+// motion). Composed from focused section components driven entirely by dict.home so the
+// page stays bilingual + RTL-safe. Nothing here discloses a mechanism beyond the filed
+// provisional (inventions A–E); every claim traces to an approved research record.
+
+import { useEffect, useState } from "react";
 import { useLocale } from "./lib/LocaleContext";
+import type { Dict } from "./lib/i18n";
 import LocaleSwitcher from "./components/LocaleSwitcher";
 import Logo from "./components/Logo";
 
 const FORMSPREE = "https://formspree.io/f/mnjlyawe";
+const X_URL = "https://x.com/trynimer";
+const CONTACT = "mailto:nimershahm@gmail.com";
 
-const ROADMAP_ICONS = [
-  // Nimer Cortex — a small neural / node graph (the "brain")
-  (
-    <svg
-      key="cortex"
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="6" cy="7" r="2" />
-      <circle cx="18" cy="6" r="2" />
-      <circle cx="17" cy="17" r="2" />
-      <circle cx="7" cy="17" r="2" />
-      <path d="M8 7 L16 6" opacity="0.6" />
-      <path d="M6 9 L7 15" opacity="0.6" />
-      <path d="M8 16 L15 16.5" opacity="0.6" />
-      <path d="M18 8 L17 15" opacity="0.6" />
-      <path d="M8 8 L16 16" opacity="0.4" />
-    </svg>
-  ),
-  // Nimer Gateway — a hub routing to many endpoints
-  (
-    <svg
-      key="gateway"
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="5" cy="12" r="2.2" />
-      <circle cx="19" cy="5" r="1.8" />
-      <circle cx="20" cy="12" r="1.8" />
-      <circle cx="19" cy="19" r="1.8" />
-      <path d="M7 11 L17.2 5.6" />
-      <path d="M7.2 12 L18 12" />
-      <path d="M7 13 L17.2 18.4" />
-    </svg>
-  ),
-  // More on the way — plus in a circle
-  (
-    <svg
-      key="more"
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="12" cy="12" r="9" opacity="0.7" strokeDasharray="3 3" />
-      <path d="M12 8 V16" />
-      <path d="M8 12 H16" />
-    </svg>
-  ),
-];
+const ACCENT = "#818cf8";
+const GOLD = "#C9A961";
 
-const ROADMAP_HUES = [
-  "#818cf8", // Cortex — indigo
-  "#34d399", // Gateway — emerald
-  "#C9A961", // More — gold
-];
+/**
+ * Reveal-on-scroll: adds `.is-visible` to every `.reveal` element as it enters the
+ * viewport (once). Falls back to showing everything if IntersectionObserver is absent.
+ */
+function useReveal() {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    if (typeof IntersectionObserver === "undefined") {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
 
 export default function HubClient() {
   const { t, dir } = useLocale();
+  const home = t.home;
+  const arrow = dir === "rtl" ? "←" : "→";
+  useReveal();
+
+  return (
+    <main style={{ position: "relative", overflow: "hidden", direction: dir }}>
+      <Nav home={home} />
+      <div style={{ maxWidth: 980, margin: "0 auto", padding: "0 24px" }}>
+        <Hero home={home} dir={dir} arrow={arrow} />
+        <Belief home={home} />
+        <BrainMetaphor home={home} />
+        <CortexSpotlight home={home} arrow={arrow} />
+        <ResearchProof home={home} arrow={arrow} />
+        <MoreOnTheWay home={home} />
+        <FollowCTA home={home} />
+        <Footer home={home} />
+      </div>
+    </main>
+  );
+}
+
+/* ─────────────────────────── Nav ─────────────────────────── */
+function Nav({ home }: { home: Dict["home"] }) {
+  return (
+    <header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 20,
+        padding: "16px 24px",
+        display: "flex",
+        alignItems: "center",
+        gap: 16,
+        background: "rgba(7,7,14,0.72)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid var(--border)",
+      }}
+    >
+      <a href="/" aria-label="Nimer home" style={{ display: "flex", textDecoration: "none", marginInlineEnd: "auto" }}>
+        <Logo size={26} />
+      </a>
+      <a
+        href="/research"
+        className="font-mono"
+        style={{ fontSize: 13, color: "var(--fg-2)", textDecoration: "none" }}
+      >
+        {home.nav.research}
+      </a>
+      <a href="#follow" className="btn-primary" style={{ padding: "8px 15px", borderRadius: 8, fontSize: 13 }}>
+        {home.nav.follow}
+      </a>
+      <LocaleSwitcher />
+    </header>
+  );
+}
+
+/* ────────────────────────── Hero ─────────────────────────── */
+function Hero({ home, dir, arrow }: { home: Dict["home"]; dir: string; arrow: string }) {
+  return (
+    <section style={{ position: "relative", paddingTop: "clamp(72px, 12vw, 128px)", paddingBottom: "clamp(48px, 8vw, 88px)" }}>
+      <div className="hero-aura" />
+      <HeroRing />
+      <div style={{ position: "relative", zIndex: 2, maxWidth: 780 }}>
+        <div
+          className="reveal badge"
+          style={{ background: "rgba(201,169,97,0.1)", borderColor: "rgba(201,169,97,0.32)", color: GOLD, marginBottom: 26 }}
+        >
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: GOLD, animation: "pulse-dot 2s ease-in-out infinite" }} />
+          {home.hero.badge}
+        </div>
+
+        <h1
+          className="reveal"
+          style={{
+            fontSize: "clamp(36px, 6vw, 66px)",
+            fontWeight: 700,
+            lineHeight: 1.06,
+            letterSpacing: "-0.03em",
+            margin: "0 0 24px",
+            color: "var(--fg)",
+          }}
+        >
+          {home.hero.title1}
+          <br />
+          <span
+            style={{
+              background: "linear-gradient(135deg, #818cf8 0%, #c084fc 52%, #C9A961 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            {home.hero.title2}
+          </span>
+        </h1>
+
+        <p className="reveal" style={{ fontSize: 18, color: "var(--fg-2)", lineHeight: 1.7, maxWidth: 620, margin: "0 0 34px" }}>
+          {home.hero.subtitle}
+        </p>
+
+        <div className="reveal" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 22 }}>
+          <a href="/research" className="btn-primary" style={{ padding: "12px 22px", borderRadius: 9, fontSize: 15 }}>
+            {home.hero.ctaResearch} <span className="flip-on-rtl">{arrow}</span>
+          </a>
+          <a href="#follow" className="btn-ghost" style={{ padding: "12px 22px", borderRadius: 9, fontSize: 15 }}>
+            {home.hero.ctaFollow}
+          </a>
+        </div>
+
+        <p className="reveal font-mono" style={{ fontSize: 12, color: "var(--fg-muted)", letterSpacing: "0.03em", margin: 0 }}>
+          {home.hero.note}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// WHY: decorative hero motif — the 12→1 symmetry ring from Paper 4 (twelve nodes on a
+// cycle, one grounded and lit). Slowly orbits; sits faint behind the hero copy. Purely
+// ornamental (aria-hidden), reinforcing the flagship idea without words.
+function HeroRing() {
+  const cx = 130;
+  const cy = 130;
+  const r = 104;
+  const nodes = Array.from({ length: 12 }, (_, i) => {
+    const a = (Math.PI / 6) * i - Math.PI / 2;
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  });
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 260 260"
+      style={{
+        position: "absolute",
+        insetInlineEnd: "-40px",
+        top: "clamp(40px, 7vw, 96px)",
+        width: "clamp(220px, 34vw, 380px)",
+        height: "clamp(220px, 34vw, 380px)",
+        opacity: 0.5,
+        zIndex: 1,
+        pointerEvents: "none",
+      }}
+    >
+      <g className="orbit-slow">
+        <circle cx={cx} cy={cy} r={r} fill="none" stroke={ACCENT} strokeOpacity="0.28" strokeWidth="1" />
+        {nodes.map((n, i) => (
+          <circle key={i} cx={n.x} cy={n.y} r={i === 0 ? 6 : 3} fill={i === 0 ? GOLD : ACCENT} fillOpacity={i === 0 ? 0.95 : 0.42} />
+        ))}
+        <line x1={cx} y1={cy} x2={nodes[0].x} y2={nodes[0].y} stroke={GOLD} strokeOpacity="0.55" strokeWidth="1.2" />
+        <circle cx={cx} cy={cy} r="2.5" fill={ACCENT} fillOpacity="0.7" />
+      </g>
+    </svg>
+  );
+}
+
+/* ───────────────────────── Belief ────────────────────────── */
+function Belief({ home }: { home: Dict["home"] }) {
+  return (
+    <section className="section reveal" style={{ borderTop: "1px solid var(--border)" }}>
+      <p className="eyebrow" style={{ marginBottom: 18 }}>{home.belief.eyebrow}</p>
+      <p style={{ fontSize: "clamp(20px, 2.9vw, 28px)", lineHeight: 1.5, letterSpacing: "-0.015em", color: "var(--fg)", maxWidth: 820, margin: 0, fontWeight: 500 }}>
+        {home.belief.body}
+      </p>
+    </section>
+  );
+}
+
+/* ─────────────────── Brain, not an engine ────────────────── */
+function BrainMetaphor({ home }: { home: Dict["home"] }) {
+  const m = home.metaphor;
+  const cols: { label: string; body: string; muted: boolean }[] = [
+    { label: m.engineLabel, body: m.engineBody, muted: true },
+    { label: m.brainLabel, body: m.brainBody, muted: false },
+  ];
+  return (
+    <section className="section reveal" style={{ borderTop: "1px solid var(--border)" }}>
+      <p className="eyebrow" style={{ marginBottom: 14 }}>{m.eyebrow}</p>
+      <h2 className="section-title" style={{ marginBottom: 32 }}>{m.title}</h2>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18 }}>
+        {cols.map((c) => (
+          <div
+            key={c.label}
+            style={{
+              border: c.muted ? "1px solid var(--border)" : "1px solid rgba(99,102,241,0.3)",
+              background: c.muted ? "rgba(255,255,255,0.015)" : "rgba(99,102,241,0.06)",
+              borderRadius: 14,
+              padding: "26px 24px",
+            }}
+          >
+            <div style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.02em", marginBottom: 12, color: c.muted ? "var(--fg-2)" : ACCENT }}>
+              {c.label}
+            </div>
+            <p style={{ fontSize: 16, lineHeight: 1.6, color: c.muted ? "var(--fg-2)" : "var(--fg)", margin: 0 }}>
+              {c.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────── Nimer Cortex spotlight ──────────────── */
+function CortexSpotlight({ home, arrow }: { home: Dict["home"]; arrow: string }) {
+  const c = home.cortex;
+  return (
+    <section className="section reveal" style={{ borderTop: "1px solid var(--border)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, flexWrap: "wrap" }}>
+        <p className="eyebrow" style={{ margin: 0, color: ACCENT }}>{c.eyebrow}</p>
+        <span
+          className="font-mono"
+          style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.06em", padding: "2px 9px", borderRadius: 999, color: ACCENT, background: "rgba(129,140,248,0.12)", border: "1px solid rgba(129,140,248,0.3)" }}
+        >
+          {c.status}
+        </span>
+      </div>
+      <h2 className="section-title" style={{ marginBottom: 16, maxWidth: 760 }}>{c.title}</h2>
+      <p style={{ fontSize: 17, lineHeight: 1.7, color: "var(--fg-2)", maxWidth: 720, margin: "0 0 34px" }}>{c.body}</p>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 14, marginBottom: 32 }}>
+        {c.pillars.map((p, i) => (
+          <div key={p.title} className="lift" style={{ border: "1px solid var(--border)", background: "var(--bg-card)", borderRadius: 12, padding: "20px 20px" }}>
+            <div
+              style={{ width: 30, height: 30, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14, background: "rgba(129,140,248,0.12)", border: "1px solid rgba(129,140,248,0.3)", color: ACCENT }}
+            >
+              <PillarGlyph index={i} />
+            </div>
+            <div style={{ fontSize: 15, fontWeight: 600, color: "var(--fg)", marginBottom: 7 }}>{p.title}</div>
+            <p style={{ fontSize: 13.5, lineHeight: 1.6, color: "var(--fg-2)", margin: 0 }}>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <a href="/research" className="btn-ghost" style={{ padding: "11px 20px", borderRadius: 9, fontSize: 14 }}>
+        {c.cta} <span className="flip-on-rtl">{arrow}</span>
+      </a>
+    </section>
+  );
+}
+
+// WHY: four minimal glyphs for the Cortex pillars — composition, reasoning loop,
+// grounding anchor, heterogeneous lobes. Kept tiny and abstract to stay calm.
+function PillarGlyph({ index }: { index: number }) {
+  const common = { width: 16, height: 16, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  switch (index) {
+    case 0: // composition — overlapping squares
+      return (<svg {...common}><rect x="4" y="4" width="10" height="10" rx="2" /><rect x="10" y="10" width="10" height="10" rx="2" opacity="0.6" /></svg>);
+    case 1: // reasoning loop — circular arrows
+      return (<svg {...common}><path d="M20 12a8 8 0 1 1-2.3-5.6" /><path d="M20 4v4h-4" /></svg>);
+    case 2: // grounded memory — node anchored to baseline
+      return (<svg {...common}><circle cx="12" cy="7" r="3" /><path d="M12 10v7" /><path d="M6 20h12" opacity="0.6" /></svg>);
+    default: // heterogeneous lobes — three linked nodes
+      return (<svg {...common}><circle cx="7" cy="8" r="2.4" /><circle cx="17" cy="7" r="2.4" /><circle cx="13" cy="17" r="2.4" /><path d="M9 9 L15 8 M9 9 L12 15 M15 9 L13 15" opacity="0.55" /></svg>);
+  }
+}
+
+/* ─────────────────────── Research proof ──────────────────── */
+function ResearchProof({ home, arrow }: { home: Dict["home"]; arrow: string }) {
+  const pr = home.proof;
+  return (
+    <section className="section reveal" style={{ borderTop: "1px solid var(--border)" }}>
+      <p className="eyebrow" style={{ marginBottom: 14 }}>{pr.eyebrow}</p>
+      <h2 className="section-title" style={{ marginBottom: 30, maxWidth: 700 }}>{pr.title}</h2>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 44 }}>
+        {pr.items.map((item) => (
+          <div key={item.label} style={{ borderInlineStart: `2px solid ${ACCENT}`, paddingInlineStart: 16 }}>
+            <div style={{ fontSize: 14.5, fontWeight: 600, color: "var(--fg)", marginBottom: 6 }}>{item.label}</div>
+            <p style={{ fontSize: 13.5, lineHeight: 1.6, color: "var(--fg-2)", margin: 0 }}>{item.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="eyebrow" style={{ marginBottom: 14, color: GOLD }}>{pr.papersEyebrow}</p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 14, marginBottom: 26 }}>
+        {pr.papers.map((paper) => (
+          <a
+            key={paper.href}
+            href={paper.href}
+            className="lift"
+            style={{ display: "block", border: "1px solid var(--border)", background: "var(--bg-card)", borderRadius: 12, padding: "20px 22px", textDecoration: "none" }}
+          >
+            <span className="font-mono" style={{ fontSize: 11, color: GOLD, letterSpacing: "0.05em" }}>{paper.tag}</span>
+            <div style={{ fontSize: 16, fontWeight: 600, color: "var(--fg)", margin: "8px 0 8px" }}>{paper.name}</div>
+            <p style={{ fontSize: 13.5, lineHeight: 1.6, color: "var(--fg-2)", margin: "0 0 12px" }}>{paper.blurb}</p>
+            <span className="font-mono" style={{ fontSize: 12, color: ACCENT }}>{home.cortex.cta} <span className="flip-on-rtl">{arrow}</span></span>
+          </a>
+        ))}
+      </div>
+
+      <a href="/research" className="font-mono" style={{ fontSize: 13, color: ACCENT, textDecoration: "none" }}>
+        {pr.allResearch} <span className="flip-on-rtl">{arrow}</span>
+      </a>
+    </section>
+  );
+}
+
+/* ─────────────────────── More on the way ─────────────────── */
+function MoreOnTheWay({ home }: { home: Dict["home"] }) {
+  const m = home.more;
+  return (
+    <section className="section-tight reveal" style={{ borderTop: "1px solid var(--border)" }}>
+      <div
+        style={{ border: "1px dashed var(--border-2)", borderRadius: 14, padding: "26px 26px", display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}
+      >
+        <div style={{ width: 40, height: 40, borderRadius: 10, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(201,169,97,0.1)", border: "1px solid rgba(201,169,97,0.3)", color: GOLD }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <circle cx="12" cy="12" r="9" opacity="0.7" strokeDasharray="3 3" />
+            <path d="M12 8v8M8 12h8" />
+          </svg>
+        </div>
+        <div style={{ flex: 1, minWidth: 220 }}>
+          <p className="eyebrow" style={{ margin: "0 0 6px", color: GOLD }}>{m.eyebrow}</p>
+          <div style={{ fontSize: 18, fontWeight: 600, color: "var(--fg)", marginBottom: 5 }}>{m.title}</div>
+          <p style={{ fontSize: 14, lineHeight: 1.6, color: "var(--fg-2)", margin: 0 }}>{m.body}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────── Follow ───────────────────────── */
+function FollowCTA({ home }: { home: Dict["home"] }) {
+  const { dir } = useLocale();
+  const f = home.follow;
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -96,7 +384,7 @@ export default function HubClient() {
       const res = await fetch(FORMSPREE, {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "bynimer-hub-list" }),
+        body: JSON.stringify({ email, source: "bynimer-home" }),
       });
       if (res.ok) {
         setStatus("success");
@@ -110,451 +398,46 @@ export default function HubClient() {
   };
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        position: "relative",
-        overflow: "hidden",
-        direction: dir,
-      }}
-    >
-      {/* Mini-navbar */}
-      <header
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: "20px 28px",
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
-          zIndex: 10,
-        }}
-      >
-        <a
-          href="/"
-          aria-label="Nimer home"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            textDecoration: "none",
-            marginInlineEnd: "auto",
-          }}
-        >
-          <Logo size={26} />
-        </a>
-        <LocaleSwitcher />
-      </header>
-
-      <div
-        style={{
-          maxWidth: 980,
-          margin: "0 auto",
-          padding: "112px 28px 80px",
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
-        {/* Badge */}
-        <div
-          className="badge"
-          style={{
-            display: "inline-flex",
-            marginBottom: 24,
-            background: "rgba(201,169,97,0.1)",
-            borderColor: "rgba(201,169,97,0.32)",
-            color: "#C9A961",
-          }}
-        >
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              background: "#C9A961",
-              display: "inline-block",
-              animation: "pulse-dot 2s ease-in-out infinite",
-            }}
+    <section id="follow" className="section reveal" style={{ borderTop: "1px solid var(--border)" }}>
+      <div style={{ border: "1px solid var(--border)", borderRadius: 16, padding: "clamp(28px, 5vw, 48px)", background: "radial-gradient(120% 120% at 0% 0%, rgba(99,102,241,0.09), transparent 60%)", maxWidth: 720 }}>
+        <h2 className="section-title" style={{ marginBottom: 12 }}>{f.title}</h2>
+        <p style={{ fontSize: 15.5, color: "var(--fg-2)", lineHeight: 1.65, margin: "0 0 24px", maxWidth: 520 }}>{f.subtitle}</p>
+        <form onSubmit={submit} style={{ display: "flex", gap: 8, flexWrap: "wrap", maxWidth: 520 }}>
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={f.placeholder}
+            disabled={status === "loading" || status === "success"}
+            dir={dir === "rtl" ? "ltr" : undefined}
+            style={{ flex: 1, minWidth: 220, padding: "12px 16px", background: "rgba(255,255,255,0.04)", border: "1px solid var(--border)", borderRadius: 9, color: "var(--fg)", fontSize: 14, outline: "none", fontFamily: "inherit", transition: "border-color 0.2s" }}
+            onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
+            onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
           />
-          {t.maintenance.badge}
-        </div>
-
-        {/* Headline */}
-        <h1
-          style={{
-            fontSize: "clamp(34px, 5.5vw, 60px)",
-            fontWeight: 700,
-            lineHeight: 1.08,
-            letterSpacing: "-0.025em",
-            margin: "0 0 22px",
-            color: "var(--fg)",
-            maxWidth: 760,
-          }}
-        >
-          {t.maintenance.title1}
-          <br />
-          <span
-            style={{
-              background:
-                "linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #C9A961 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            {t.maintenance.title2}
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <p
-          style={{
-            fontSize: 17,
-            color: "var(--fg-2)",
-            lineHeight: 1.7,
-            maxWidth: 660,
-            margin: "0 0 40px",
-          }}
-        >
-          {t.maintenance.subtitle}
-        </p>
-
-        {/* ETA pill */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "8px 14px",
-            borderRadius: 999,
-            background: "rgba(99,102,241,0.08)",
-            border: "1px solid rgba(99,102,241,0.25)",
-            fontSize: 12,
-            fontFamily: "var(--font-geist-mono), monospace",
-            letterSpacing: "0.04em",
-            color: "#a5b4fc",
-            marginBottom: 56,
-          }}
-        >
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-          >
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 7 V12 L15 14" />
-          </svg>
-          {t.maintenance.eta}
-        </div>
-
-        {/* Roadmap section */}
-        <section style={{ marginBottom: 56 }}>
-          <div
-            className="font-mono"
-            style={{
-              fontSize: 11,
-              color: "var(--fg-muted)",
-              textTransform: "uppercase",
-              letterSpacing: "0.14em",
-              marginBottom: 18,
-            }}
-          >
-            {t.maintenance.roadmapHeader}
-          </div>
-          <ul
-            style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: 1,
-              border: "1px solid var(--border)",
-              borderRadius: 14,
-              overflow: "hidden",
-            }}
-          >
-            {t.maintenance.roadmap.map((item, i) => (
-              <li
-                key={item.title}
-                style={{
-                  background: "rgba(255,255,255,0.012)",
-                  padding: "20px 22px",
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 14,
-                  borderRight:
-                    (i % 2 === 0 && i !== t.maintenance.roadmap.length - 1)
-                      ? "1px solid var(--border)"
-                      : "none",
-                  borderBottom:
-                    i < t.maintenance.roadmap.length - (t.maintenance.roadmap.length % 2 === 0 ? 2 : 1)
-                      ? "1px solid var(--border)"
-                      : "none",
-                }}
-              >
-                <div
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: 8,
-                    background: `${ROADMAP_HUES[i]}15`,
-                    border: `1px solid ${ROADMAP_HUES[i]}40`,
-                    color: ROADMAP_HUES[i],
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                    marginTop: 2,
-                  }}
-                >
-                  {ROADMAP_ICONS[i]}
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      flexWrap: "wrap",
-                      marginBottom: 6,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 600,
-                        color: "var(--fg)",
-                        letterSpacing: "-0.005em",
-                      }}
-                    >
-                      {item.title}
-                    </span>
-                    {item.status && (
-                      <span
-                        className="font-mono"
-                        style={{
-                          fontSize: 10,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.06em",
-                          padding: "2px 7px",
-                          borderRadius: 999,
-                          color: ROADMAP_HUES[i],
-                          background: `${ROADMAP_HUES[i]}14`,
-                          border: `1px solid ${ROADMAP_HUES[i]}33`,
-                        }}
-                      >
-                        {item.status}
-                      </span>
-                    )}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 13,
-                      color: "var(--fg-2)",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {item.desc}
-                  </div>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      // WHY: only force a new tab for external product links (dashboard);
-                      // the internal /gateway marketing page should navigate in-place.
-                      target={item.href.startsWith("http") ? "_blank" : undefined}
-                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="font-mono"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 5,
-                        marginTop: 10,
-                        fontSize: 12,
-                        color: ROADMAP_HUES[i],
-                        textDecoration: "none",
-                      }}
-                    >
-                      {dir === "rtl" ? "افتح ←" : "Open →"}
-                    </a>
-                  ) : item.soon ? (
-                    <span
-                      className="font-mono"
-                      style={{
-                        display: "inline-flex",
-                        marginTop: 10,
-                        fontSize: 12,
-                        color: "var(--fg-muted)",
-                      }}
-                    >
-                      {item.soon}
-                    </span>
-                  ) : null}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Email capture */}
-        <section
-          style={{
-            border: "1px solid var(--border)",
-            borderRadius: 14,
-            padding: "28px 26px",
-            background: "rgba(99,102,241,0.04)",
-            maxWidth: 560,
-          }}
-        >
-          <h2
-            style={{
-              fontSize: 18,
-              fontWeight: 600,
-              margin: "0 0 14px",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {t.maintenance.emailHeader}
-          </h2>
-          <form
-            onSubmit={submit}
-            style={{ display: "flex", gap: 8, flexWrap: "wrap" }}
-          >
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t.maintenance.emailPlaceholder}
-              disabled={status === "loading" || status === "success"}
-              dir={dir === "rtl" ? "ltr" : undefined}
-              style={{
-                flex: 1,
-                minWidth: 220,
-                padding: "11px 16px",
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid var(--border)",
-                borderRadius: 8,
-                color: "var(--fg)",
-                fontSize: 14,
-                outline: "none",
-                fontFamily: "inherit",
-                transition: "border-color 0.2s",
-              }}
-              onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
-              onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
-            />
-            <button
-              type="submit"
-              disabled={status === "loading" || status === "success"}
-              className="btn-primary"
-              style={{
-                padding: "11px 20px",
-                borderRadius: 8,
-                fontSize: 14,
-                fontFamily: "inherit",
-              }}
-            >
-              {status === "success"
-                ? t.maintenance.emailSuccess
-                : status === "loading"
-                ? "…"
-                : t.maintenance.emailSubmit}
-            </button>
-          </form>
-          {status === "error" && (
-            <p style={{ marginTop: 10, fontSize: 13, color: "#f87171" }}>
-              {t.maintenance.emailError}
-            </p>
-          )}
-        </section>
-
-        {/* Footer mini */}
-        <div
-          style={{
-            marginTop: 64,
-            paddingTop: 24,
-            borderTop: "1px solid var(--border)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            flexWrap: "wrap",
-          }}
-        >
-          <div
-            className="font-mono"
-            style={{ fontSize: 11, color: "var(--fg-muted)" }}
-          >
-            {t.footer.built}
-          </div>
-          <div style={{ display: "flex", gap: 4 }}>
-            <span
-              className="font-mono"
-              style={{
-                padding: "6px 12px",
-                fontSize: 12,
-                color: "var(--fg-muted)",
-              }}
-            >
-              {t.footer.github}
-            </span>
-            <a
-              href="https://x.com/trynimer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono"
-              style={{
-                padding: "6px 12px",
-                fontSize: 12,
-                color: "var(--fg-muted)",
-                textDecoration: "none",
-                borderRadius: 6,
-                transition: "color 0.15s, background 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "var(--fg)";
-                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "var(--fg-muted)";
-                e.currentTarget.style.background = "transparent";
-              }}
-            >
-              {t.footer.twitter}
-            </a>
-            <a
-              href="mailto:nimershahm@gmail.com"
-              className="font-mono"
-              style={{
-                padding: "6px 12px",
-                fontSize: 12,
-                color: "var(--fg-muted)",
-                textDecoration: "none",
-                borderRadius: 6,
-                transition: "color 0.15s, background 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "var(--fg)";
-                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "var(--fg-muted)";
-                e.currentTarget.style.background = "transparent";
-              }}
-            >
-              {t.footer.contact}
-            </a>
-          </div>
-        </div>
+          <button type="submit" disabled={status === "loading" || status === "success"} className="btn-primary" style={{ padding: "12px 22px", borderRadius: 9, fontSize: 14 }}>
+            {status === "success" ? f.success : status === "loading" ? "…" : f.submit}
+          </button>
+        </form>
+        {status === "error" && <p style={{ marginTop: 10, fontSize: 13, color: "#f87171" }}>{f.error}</p>}
       </div>
-    </main>
+    </section>
+  );
+}
+
+/* ────────────────────────── Footer ───────────────────────── */
+function Footer({ home }: { home: Dict["home"] }) {
+  const f = home.footer;
+  const linkStyle: React.CSSProperties = { padding: "6px 10px", fontSize: 12.5, color: "var(--fg-muted)", textDecoration: "none", borderRadius: 6 };
+  return (
+    <footer style={{ borderTop: "1px solid var(--border)", padding: "28px 0 56px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
+      <div className="font-mono" style={{ fontSize: 11.5, color: "var(--fg-muted)" }}>{f.built}</div>
+      <div style={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+        <a href="/research" className="font-mono" style={linkStyle}>{f.research}</a>
+        <a href="/terms" className="font-mono" style={linkStyle}>{f.terms}</a>
+        <a href={X_URL} target="_blank" rel="noopener noreferrer" className="font-mono" style={linkStyle}>{f.twitter}</a>
+        <a href={CONTACT} className="font-mono" style={linkStyle}>{f.contact}</a>
+      </div>
+    </footer>
   );
 }

@@ -14,26 +14,25 @@ const plexArabic = IBM_Plex_Sans_Arabic({
   display: "swap",
 });
 
-// WHY: Site-wide default metadata frames the ByNimer company (the hub at "/").
-// Product pages such as /gateway override title/description/openGraph with their own.
+// WHY: Site-wide default metadata frames the ByNimer company (the hub at "/"),
+// led by Nimer Cortex — a grounded-memory reasoning core. Research-first positioning.
 export const metadata: Metadata = {
   metadataBase: new URL("https://nimer.dev"),
   title: {
-    default: "ByNimer — Trustworthy AI, engineered from first principles",
+    default: "ByNimer — A brain that grows through architecture, not scale",
     template: "%s · ByNimer",
   },
   description:
-    "ByNimer is an AI research and infrastructure company. We build Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, a global AI gateway.",
+    "ByNimer is an AI research company building Nimer Cortex, a grounded-memory reasoning core that learns without gradients. We build in the open and publish our results honestly.",
   keywords: [
     "ByNimer",
     "Nimer",
     "Nimer Cortex",
-    "Nimer Gateway",
     "AI research",
     "grounded memory",
-    "AI gateway",
-    "LLM routing",
-    "Halal AI",
+    "reasoning core",
+    "zero-gradient learning",
+    "relational memory",
   ],
   authors: [{ name: "ByNimer", url: "https://nimer.dev" }],
   openGraph: {
@@ -41,17 +40,17 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://nimer.dev",
     siteName: "ByNimer",
-    title: "ByNimer — Trustworthy AI, engineered from first principles",
+    title: "ByNimer — A brain that grows through architecture, not scale",
     description:
-      "ByNimer is an AI research and infrastructure company: Nimer Cortex, a grounded-memory reasoning core, and Nimer Gateway, a global AI gateway.",
+      "An AI research company building Nimer Cortex: a grounded-memory reasoning core that learns without gradients. Built in the open, honest results included.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@trynimer",
     creator: "@trynimer",
-    title: "ByNimer — Trustworthy AI, engineered from first principles",
+    title: "ByNimer — A brain that grows through architecture, not scale",
     description:
-      "An AI research and infrastructure company: Nimer Cortex (grounded-memory reasoning) and Nimer Gateway (global AI gateway).",
+      "An AI research company building Nimer Cortex — a grounded-memory reasoning core that learns without gradients.",
   },
   robots: { index: true, follow: true },
 };

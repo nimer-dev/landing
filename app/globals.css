@@ -270,6 +270,68 @@ html[dir="rtl"] .flip-on-rtl { transform: scaleX(-1); }
 .code-dot-y { background: #f59e0b; opacity: 0.6; }
 .code-dot-g { background: #22c55e; opacity: 0.6; }
 
+/* ═══════════════════════════════════════════════════════════
+   HOMEPAGE — calm-scientific refinements (Anthropic-like)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Section rhythm: generous vertical breathing room = cognitive fluency = trust. */
+.section { padding-block: clamp(56px, 9vw, 104px); }
+.section-tight { padding-block: clamp(40px, 6vw, 72px); }
+
+/* Eyebrow label above section headings. */
+.eyebrow {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent-2);
+}
+
+/* Big editorial section heading. */
+.section-title {
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--fg);
+}
+
+/* Soft radial aura behind the hero — deep, not neon (calm-scientific). */
+.hero-aura {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 620px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 60% at 30% 20%, rgba(99,102,241,0.16), transparent 70%),
+    radial-gradient(50% 50% at 80% 10%, rgba(201,169,97,0.08), transparent 70%);
+  filter: blur(4px);
+}
+
+/* Reveal-on-scroll: elements start dimmed + shifted, settle when .is-visible is set.
+   Respects reduced-motion by showing content immediately. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Slow orbit for the hero symmetry motif (the 12→1 ring). */
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+.orbit-slow { animation: orbit-spin 60s linear infinite; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { .orbit-slow { animation: none; } }
+
+/* Interactive card lift for pillar / paper cards. */
+.lift { transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
+.lift:hover { transform: translateY(-3px); border-color: var(--border-2); background: var(--bg-card-h); }
+
 /* ─── Range input ─────────────────────────────────────────── */
 input[type="range"] { accent-color: var(--accent); }
 
