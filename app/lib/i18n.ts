@@ -161,6 +161,7 @@ export const dict: Record<Locale, Dict> = {
           title: "Nimer Cortex",
           status: "Research · Patent-pending",
           desc: "A memory-and-reasoning core that learns continuously with zero-gradient training — and can prove to itself which of its own beliefs are grounded.",
+          href: "/research",
         },
         {
           title: "Nimer Gateway",
@@ -260,6 +261,7 @@ export const dict: Record<Locale, Dict> = {
           title: "Nimer Cortex",
           status: "بحث · براءة قيد الإيداع",
           desc: "نواة ذاكرة وتفكير تتعلّم باستمرار بلا تدريب تدرّجي — وتقدر أن تتحقّق بنفسها من مدى ارتكاز معتقداتها على الواقع وموثوقيتها.",
+          href: "/research",
         },
         {
           title: "Nimer Gateway",
