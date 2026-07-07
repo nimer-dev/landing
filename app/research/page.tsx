@@ -25,6 +25,9 @@ type Paper = {
   name: string;
   blurb: string;
   summaryHref?: string;
+  // WHY: when present, renders a "[draft →]" link to the paper's full-text sub-page
+  // (/research/<slug>). Only papers with Majdi-approved public full text carry one.
+  draftHref?: string;
   tags: string[];
 };
 
@@ -34,6 +37,7 @@ const PAPERS: Paper[] = [
     blurb:
       "Internal consistency determines a relational memory only up to its automorphism group; grounding is the symmetry-breaking action that resolves the rest.",
     summaryHref: "#paper4",
+    draftHref: "/research/grounding-is-symmetry-breaking",
     tags: ["draft", "arXiv — coming"],
   },
   {
@@ -41,6 +45,7 @@ const PAPERS: Paper[] = [
     blurb:
       "Identity from percepts, relation from time — how a memory grounds real percepts, with two honest null results that make the case.",
     summaryHref: "#paper5",
+    draftHref: "/research/two-channels-to-a-grounded-world",
     tags: ["draft"],
   },
   {
@@ -208,6 +213,14 @@ export default function ResearchPage() {
                     style={{ color: ACCENT, fontSize: 13, textDecoration: "none", fontWeight: 500 }}
                   >
                     Plain-language summary ↓
+                  </a>
+                )}
+                {paper.draftHref && (
+                  <a
+                    href={paper.draftHref}
+                    style={{ color: ACCENT, fontSize: 13, textDecoration: "none", fontWeight: 500 }}
+                  >
+                    Full draft →
                   </a>
                 )}
                 {paper.tags.map((tag) => (
