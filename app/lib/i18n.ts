@@ -54,6 +54,7 @@ export interface Dict {
       papersEyebrow: string;
       papers: readonly { tag: string; name: string; blurb: string; href: string }[];
       allResearch: string;
+      ip: string;
     };
     more: { eyebrow: string; title: string; body: string };
     follow: {
@@ -144,6 +145,7 @@ export const dict: Record<Locale, Dict> = {
           },
         ],
         allResearch: "All research",
+        ip: "Intellectual property. The core inventions behind this research are protected by two U.S. provisional patents (filed July 2026). Technical details are available to serious partners under NDA.",
       },
       more: {
         eyebrow: "The ByNimer umbrella",
@@ -240,6 +242,7 @@ export const dict: Record<Locale, Dict> = {
           },
         ],
         allResearch: "كلّ الأبحاث",
+        ip: "الملكية الفكرية. الاختراعات الجوهرية خلف هذا البحث محميّة بموجب طلبَي براءة اختراع مؤقّتَين في الولايات المتحدة (أُودعا في يوليو 2026). التفاصيل التقنية متاحة للشركاء الجادّين بموجب اتفاقية سرّية.",
       },
       more: {
         eyebrow: "مظلّة ByNimer",

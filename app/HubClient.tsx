@@ -370,6 +370,28 @@ function ResearchProof({ home, arrow }: { home: Dict["home"]; arrow: string }) {
       <a href="/research" className="font-mono" style={{ fontSize: 13, color: ACCENT, textDecoration: "none" }}>
         {pr.allResearch} <span className="flip-on-rtl">{arrow}</span>
       </a>
+
+      {/* ── IP / moat (one line, no mechanism — bilingual, mirrors /research) ── */}
+      {(() => {
+        const sep = pr.ip.indexOf(". ");
+        const lead = sep > 0 ? pr.ip.slice(0, sep + 1) : pr.ip;
+        const rest = sep > 0 ? pr.ip.slice(sep + 2) : "";
+        return (
+          <p
+            style={{
+              marginTop: 40,
+              paddingTop: 26,
+              borderTop: "1px solid var(--border)",
+              maxWidth: 640,
+              fontSize: 14,
+              lineHeight: 1.7,
+              color: "var(--fg-2)",
+            }}
+          >
+            <strong style={{ color: "var(--fg)", fontWeight: 600 }}>{lead}</strong> {rest}
+          </p>
+        );
+      })()}
     </section>
   );
 }
