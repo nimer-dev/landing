@@ -283,7 +283,7 @@ export default function ResearchPage() {
         >
           <p style={{ color: MUTED, fontSize: 14, lineHeight: 1.65, margin: 0 }}>
             <strong style={{ color: FG, fontWeight: 600 }}>Intellectual property.</strong> The core
-            inventions behind this research are protected by a U.S. provisional patent (filed July
+            inventions behind this research are protected by two U.S. provisional patents (filed July
             2026). Technical details are available to serious partners under NDA.
           </p>
         </div>

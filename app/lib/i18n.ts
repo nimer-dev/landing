@@ -87,7 +87,7 @@ export const dict: Record<Locale, Dict> = {
         note: "Patent-pending · Reproducible",
         figCaption: "12 → 1 · symmetry becomes grounding · Paper 4",
         stats: [
-          { value: "5", label: "Inventions filed" },
+          { value: "9", label: "Inventions filed" },
           { value: "2", label: "Papers published" },
           { value: "Open", label: "& reproducible" },
         ],
@@ -185,7 +185,7 @@ export const dict: Record<Locale, Dict> = {
         note: "براءة قيد الإيداع · قابل لإعادة الإنتاج",
         figCaption: "١٢ ← ١ · التماثل يصير تأريضًا · الورقة ٤",
         stats: [
-          { value: "٥", label: "اختراعات مُودَعة" },
+          { value: "٩", label: "اختراعات مُودَعة" },
           { value: "٢", label: "ورقتان منشورتان" },
           { value: "مفتوح", label: "وقابل للإنتاج" },
         ],
